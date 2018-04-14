@@ -1,0 +1,58 @@
+# The token from your Buildkite "Agents" page
+token="{{ buildkite_agent_token }}"
+
+# The name of the agent
+name="%hostname-%n"
+
+# The priority of the agent (higher priorities are assigned work first)
+priority={{buildkite_agent_priority}}
+
+# Tags for the agent (default is "queue=default")
+tags="{{buildkite_agent_tags | join(',')}}"
+
+# Include the host's EC2 meta-data as tags (instance-id, instance-type, and ami-id)
+tags-from-ec2={{buildkite_agent_tags_from_ec2}}
+
+# Include the host's EC2 tags as tags
+tags-from-ec2-tags={{buildkite_agent_tags_from_ec2_tags}}
+
+# Include the host's Google Cloud meta-data as tags (instance-id, machine-type, preemptible, project-id, region, and zone)
+tags-from-gcp={{buildkite_agent_tags_from_gcp}}
+
+# Path to a custom boostrap command to run. By default this is `buildkite-agent bootstrap`.
+# This allows you to override the entire execution of a job. Generally you should use hooks instead!
+# See https://buildkite.com/docs/agent/hooks
+bootstrap-script="{{buildkite_agent_bootstrap_script}}"
+
+# Path to where the builds will run from
+build-path="/var/lib/buildkite-agent/builds"
+
+# Directory where the hook scripts are found
+hooks-path="/etc/buildkite-agent/hooks"
+
+# When plugins are installed they will be saved to this path
+plugins-path="/etc/buildkite-agent/plugins"
+
+# Flags to pass to the `git clone` command
+git-clone-flags={{buildkite_agent_git_clone_flags}}
+
+# Flags to pass to the `git clean` command
+git-clean-flags={{buildkite_agent_git_clean_flags}}
+
+# Do not run jobs within a pseudo terminal
+no-pty={{buildkite_agent_no_pty}}
+
+# Don't automatically run ssh-keyscan before checkout
+no-ssh-keyscan={{buildkite_agent_no_ssh_keyscan}}
+
+# Don't allow this agent to run arbitrary console commands
+no-command-eval={{buildkite_agent_no_command_eval}}
+
+# Don't allow this agent to run plugins
+no-plugins={{buildkite_agent_no_plugins}}
+
+# Enable debug mode
+debug={{ buildkite_agent_debug }}
+
+# Don't show colors in logging
+no-color={{buildkite_agent_no_color}}
