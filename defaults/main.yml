@@ -5,3 +5,5 @@ buildkite_agent_name: "buildkite-agent"
 buildkite_agent_meta_data: "queue=default"
 buildkite_agent_meta_data_ec2_tags: "true"
 buildkite_agent_debug: "false"
+buildkite_agent_enabled: true
+buildkite_agent_state: "started"
