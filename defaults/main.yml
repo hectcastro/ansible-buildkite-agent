@@ -1,5 +1,6 @@
 # note: the booleans are quoted otherwise they are rendered capitalised.
 ---
+buildkite_agent_count: 1
 buildkite_agent_major_version: 3
 buildkite_agent_conf_dir: "/etc/buildkite-agent"
 buildkite_agent_token: ""
