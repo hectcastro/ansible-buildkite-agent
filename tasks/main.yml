@@ -19,3 +19,9 @@
             mode=0600
   notify:
     - Restart Buildkite
+
+- name: Configure Buildkite service state
+  service:
+    name: buildkite-agent
+    enabled: "{{ buildkite_agent_enabled }}"
+    state: "{{ buildkite_agent_state }}"
