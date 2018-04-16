@@ -8,7 +8,8 @@ name="%hostname-%n"
 priority={{ buildkite_agent_priority }}
 
 # Tags for the agent (default is "queue=default")
-tags="{{ ["queue={{ buildkite_agent_queue }}"] + buildkite_agent_tags | join(',') }}"
+{% set queue = 'queue=' + agent_queue %}
+tags={{ ([queue] + buildkite_agent_tags) | join(',') }}
 
 # Include the host's EC2 meta-data as tags (instance-id, instance-type, and ami-id)
 tags-from-ec2={{ buildkite_agent_tags_from_ec2}}
