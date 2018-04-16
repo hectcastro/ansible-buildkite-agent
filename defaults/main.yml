@@ -4,10 +4,6 @@ buildkite_agent_major_version: 3
 buildkite_agent_conf_dir: "/etc/buildkite-agent"
 buildkite_agent_token: ""
 buildkite_agent_debug: "false"
-buildkite_agent_enabled: true
-# if you're building a golden image and don't want it to connect to
-# buildkite during build ptocess, set this to 'stopped'.
-buildkite_agent_state: "started"
 
 # v2 https://buildkite.com/docs/agent/v2/configuration
 buildkite_agent_name: "buildkite-agent" # v3 default: '%hostname-%n'
