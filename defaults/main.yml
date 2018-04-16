@@ -22,7 +22,7 @@ buildkite_agent_tags:
 buildkite_agent_tags_from_ec2: "false"
 buildkite_agent_tags_from_ec2_tags: "false"
 buildkite_agent_tags_from_gcp: "false"
-buildkite_agent_bootstrap_script: ""
+buildkite_agent_bootstrap_script: "buildkite-agent bootstrap"
 buildkite_agent_git_clone_flags: "-v"
 buildkite_agent_git_clean_flags: "-fxdq"
 buildkite_agent_no_pty: "false"
