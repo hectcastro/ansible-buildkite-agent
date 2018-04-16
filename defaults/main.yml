@@ -6,7 +6,7 @@ buildkite_agent_token: ""
 buildkite_agent_debug: "false"
 
 # v2 https://buildkite.com/docs/agent/v2/configuration
-buildkite_agent_name: "buildkite-agent" # v3 default: '%hostname-%n'
+buildkite_agent_name: "%hostname-%n"
 buildkite_agent_meta_data: "queue=default"
 buildkite_agent_meta_data_ec2_tags: "true"
 
