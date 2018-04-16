@@ -14,8 +14,7 @@ buildkite_agent_meta_data_ec2_tags: "true"
 # v3 https://buildkite.com/docs/agent/v3/configuration
 buildkite_agent_priority: 1
 buildkite_agent_queue: "default"
-buildkite_agent_tags:
-  - "queue={{ buildkite_agent_queue }}"
+buildkite_agent_tags: []
 buildkite_agent_tags_from_ec2: "false"
 buildkite_agent_tags_from_ec2_tags: "false"
 buildkite_agent_tags_from_gcp: "false"
