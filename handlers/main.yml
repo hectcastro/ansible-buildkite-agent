@@ -1,3 +1,4 @@
 ---
 - name: Restart Buildkite
-  service: name=buildkite-agent state=restarted
+  systemd: name=buildkite-agent@{{item}} state=restarted
+  with_sequence: start=1 end={{buildkite_agent_count}} stride=1
