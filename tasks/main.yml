@@ -21,20 +21,13 @@
   notify:
     - Restart Buildkite
 
+# because: we run the template unit
 - name: Turn off the installed service
   service:
     name: buildkite-agent
     enabled: no
     state: stopped
 
-- name: Create systemd template unit
-  copy:
-    src: /lib/systemd/system/buildkite-agent.service
-    dest: /lib/systemd/system/buildkite-agent@.service
-    owner: root
-    group: root
-    mode: "0644"
-
-- name: "Create buildkite-agent service instance #{{item}}"
+- name: "Create buildkite-agent service instances"
   systemd: name=buildkite-agent@{{item}} state=started enabled=yes
   with_sequence: start=1 end={{buildkite_agent_count}} stride=1
