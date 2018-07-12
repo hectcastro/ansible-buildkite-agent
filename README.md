@@ -17,6 +17,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_tags_from_ec2`
 - `buildkite_agent_tags_from_ec2_tags`
 - `buildkite_agent_tags_from_gcp`
+- `buildkite_agent_tags_from_host`
 - `buildkite_agent_bootstrap_script`
 - `buildkite_agent_git_clone_flags`
 - `buildkite_agent_git_clean_flags`

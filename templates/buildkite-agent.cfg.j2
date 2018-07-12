@@ -19,6 +19,9 @@ tags-from-ec2-tags={{ buildkite_agent_tags_from_ec2_tags }}
 # Include the host's Google Cloud meta-data as tags (instance-id, machine-type, preemptible, project-id, region, and zone)
 tags-from-gcp={{ buildkite_agent_tags_from_gcp }}
 
+# Include the host's meta-data as tags (hostname, machine-id, and os)
+tags-from-host={{ buildkite_agent_tags_from_host }}
+
 # Path to a custom boostrap command to run. By default this is `buildkite-agent bootstrap`.
 # This allows you to override the entire execution of a job. Generally you should use hooks instead!
 # See https://buildkite.com/docs/agent/hooks
