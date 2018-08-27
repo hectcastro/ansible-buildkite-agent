@@ -1,0 +1,71 @@
+---
+- name: make the user
+  win_user:
+    description: "Runs BuildKite jobs. See https://buildkite.com/docs/agent/v3/windows."
+    name: "buildkite-agent"
+    # TODO: Single static file with no isolation between runs is unsafe (but that's unlikely to occur)
+    # TODO: remove the password file afterwards
+    password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,hexdigits,punctuation') }}"
+    password_never_expires: yes
+    user_cannot_change_password: yes
+
+- name: grant administrator privileges to user
+  win_group_membership:
+    name: Administrators
+    members:
+      - buildkite-agent
+    state: "{{ 'present' if buildkite_agent_windows_grant_admin else 'absent' }}"
+  notify:
+    - restart-windows-buildkite
+
+- name: make the user home directory
+  win_file:
+    state: directory
+    path: 'c:\users\buildkite-agent'
+
+- name: make the install directory
+  win_file:
+    state: directory
+    path: 'c:\program files\buildkite-agent'
+
+- name: make the application-data directory
+  win_file:
+    state: directory
+    path: 'c:\programdata\buildkite-agent'
+
+- name: fetch buildkite-agent windows release
+  win_get_url:
+    url: https://github.com/buildkite/agent/releases/download/v{{ buildkite_agent_version }}/buildkite-agent-windows-amd64-{{ buildkite_agent_version }}.zip
+    dest: 'c:\windows\temp\buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
+    timeout: 30
+
+- name: unzip the release
+  win_unzip:
+    src: 'c:\windows\temp\buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
+    dest: 'c:\program files\buildkite-agent'
+    creates: 'c:\program files\buildkite-agent\buildkite-agent.exe'
+    delete_archive: yes
+
+- name: render the configuration template
+  win_template:
+    src: "buildkite-agent.cfg.j2"
+    dest: 'c:\program files\buildkite-agent\buildkite-agent.cfg'
+  notify:
+    - restart-windows-buildkite
+
+- name: install nssm to manage the process as a service
+  win_chocolatey:
+    name: nssm
+    version: 2.24.101.20180116
+
+- name: configure buildkite-agent as an nssm service
+  win_nssm:
+    name: buildkite-agent
+    user: buildkite-agent
+    state: started
+    # password lookup plugin will return the contents of the file if it exists
+    password: "{{ lookup('password', '/tmp/bk-agent-password') }}"
+    application: 'c:\program files\buildkite-agent\buildkite-agent.exe'
+    app_parameters_free_form: start
+    stdout_file: 'c:\programdata\buildkite-agent\buildkite-agent.log'
+    stderr_file: 'c:\programdata\buildkite-agent\buildkite-agent.log'

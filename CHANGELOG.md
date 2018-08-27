@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add Windows support
+
 ## 1.0.0
 
 - Remove support for Ubuntu 14.04; add support for Ubuntu 16.04.

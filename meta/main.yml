@@ -5,9 +5,14 @@ galaxy_info:
   license: Apache
   min_ansible_version: 2.4
   platforms:
-  - name: Ubuntu
-    versions:
-    - xenial
+    - name: Ubuntu
+      versions:
+        - xenial
+    - name: Windows
+      versions:
+        - "2016"
   categories:
-  - system
+    - system
+  galaxy_tags:
+    - buildkite
 dependencies: []

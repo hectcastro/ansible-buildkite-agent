@@ -1,4 +1,9 @@
 ---
-- name: Restart Buildkite
+- name: restart-systemd-buildkite
   systemd: name=buildkite-agent@{{item}} state=restarted
   with_sequence: start=1 end={{buildkite_agent_count}} stride=1
+
+- name: restart-windows-buildkite
+  win_service:
+    name: buildkite-agent
+    state: restarted

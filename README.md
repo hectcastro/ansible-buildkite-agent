@@ -4,10 +4,22 @@ An Ansible role to install the [Buildkite Agent](https://buildkite.com/docs/agen
 
 ## Role Variables
 
+### Core
+
 - `buildkite_agent_count` - Number of agents [if you want to run multiple per host](https://buildkite.com/docs/agent/v3/ubuntu#running-multiple-agents).
 - `buildkite_agent_conf_dir` - Buildkite Agent configuration directory (default: `/etc/buildkite-agent`)
 - `buildkite_agent_token` - Buildkite API token
 - `buildkite_agent_debug` - Flag to enable Buildkite Agent debugging
+- `buildkite_agent_windows_grant_admin` - If `True` make the `buildkite-agent` user be a member of the local `Administrators` group. You must assess your own security risk tradeoff with the necessity for Windows build tools needing privileges.
+
+### Version-related
+
+- `buildkite_agent_allow_latest` - whether to allow the latest version to be installed, or instead use a specified version.
+  - **NOTE:** ignored, on Windows (no package manager install option).
+- `buildkite_agent_version` - the main semantic version number to install, when `buildkite_agent_allow_latest` is `False`.
+- `buildkite_agent_build_number` - the build number (ubuntu package name includes this).
+
+### Configuration settings
 
 Variable names below map to [the agent configuration documentation](https://buildkite.com/docs/agent/v3/configuration#configuration-settings), with the same defaults, except where otherwise stated.
 

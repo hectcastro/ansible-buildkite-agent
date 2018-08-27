@@ -1,0 +1,44 @@
+---
+- name: Configure the Buildkite APT key
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: 32A37959C2FA5C3C99EFBC32A79206696452D198
+    state: present
+
+- name: Configure the Buildkite APT repository
+  apt_repository:
+    repo: "deb https://apt.buildkite.com/buildkite-agent stable main"
+    state: present
+
+- name: Install Latest Buildkite Agent
+  apt:
+    pkg: "buildkite-agent"
+    state: present
+  when: buildkite_agent_allow_latest == True
+
+- name: Install Buildkite Agent
+  apt:
+    pkg: "buildkite-agent={{ buildkite_agent_version }}-{{ buildkite_agent_build_number }}"
+    state: present
+  when: buildkite_agent_allow_latest == False
+
+- name: Configure Buildkite
+  template:
+    src: "buildkite-agent.cfg.j2"
+    dest: "{{ buildkite_agent_conf_dir }}/buildkite-agent.cfg"
+    owner: buildkite-agent
+    group: buildkite-agent
+    mode: "0600"
+  notify:
+    - restart-systemd-buildkite
+
+# because: we run the template unit
+- name: Turn off the installed service
+  service:
+    name: buildkite-agent
+    enabled: no
+    state: stopped
+
+- name: "Create buildkite-agent service instances"
+  systemd: name=buildkite-agent@{{item}} state=started enabled=yes
+  with_sequence: start=1 end={{buildkite_agent_count}} stride=1
