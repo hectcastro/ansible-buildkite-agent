@@ -30,6 +30,15 @@
     - '{{ buildkite_agent_home_dir.Windows }}'
     - '{{ buildkite_agent_home_dir.Windows }}/builds'
 
+- name: Allow user full control inside builds
+  win_acl:
+    path: '{{ buildkite_agent_home_dir.Windows }}/builds'
+    user: buildkite-agent
+    rights: FullControl
+    type: allow
+    state: present
+    inherit: ContainerInherit, ObjectInherit
+
 - name: fetch buildkite-agent windows release
   win_get_url:
     url: https://github.com/buildkite/agent/releases/download/v{{ buildkite_agent_version }}/buildkite-agent-windows-amd64-{{ buildkite_agent_version }}.zip
