@@ -12,6 +12,13 @@ An Ansible role to install the [Buildkite Agent](https://buildkite.com/docs/agen
 - `buildkite_agent_debug` - Flag to enable Buildkite Agent debugging
 - `buildkite_agent_windows_grant_admin` - If `True` make the `buildkite-agent` user be a member of the local `Administrators` group. You must assess your own security risk tradeoff with the necessity for Windows build tools needing privileges.
 
+### Paths-related
+
+- `buildkite_agent_builds_dir` - Path to where agent will perform builds.
+  - Note: on Windows, this is `c:/b` because long filenames still cause a problem.
+- `buildkite_agent_hooks_dir` - Path to where agent will look for hooks.
+- `buildkite_agent_plugins_dir` - Path to where agent will look for plugins.
+
 ### Version-related
 
 - `buildkite_agent_allow_latest` - whether to allow the latest version to be installed, or instead use a specified version.

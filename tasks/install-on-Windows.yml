@@ -25,14 +25,14 @@
   with_items:
     - 'c:/program files/buildkite-agent'
     - '{{ buildkite_agent_conf_dir.Windows }}'
-    - '{{ buildkite_agent_conf_dir.Windows }}/hooks'
-    - '{{ buildkite_agent_conf_dir.Windows }}/plugins'
+    - '{{ buildkite_agent_hooks_dir.Windows }}'
+    - '{{ buildkite_agent_plugins_dir.Windows }}'
     - '{{ buildkite_agent_home_dir.Windows }}'
-    - '{{ buildkite_agent_home_dir.Windows }}/builds'
+    - '{{ buildkite_agent_builds_dir.Windows }}'
 
 - name: Allow user full control inside builds
   win_acl:
-    path: '{{ buildkite_agent_home_dir.Windows }}/builds'
+    path: '{{ buildkite_agent_builds_dir.Windows }}'
     user: buildkite-agent
     rights: FullControl
     type: allow

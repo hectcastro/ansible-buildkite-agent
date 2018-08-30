@@ -11,6 +11,17 @@ buildkite_agent_home_dir:
 buildkite_agent_token: ""
 buildkite_agent_windows_grant_admin: False
 
+# paths config
+buildkite_agent_builds_dir:
+  Debian: "{{ buildkite_agent_home_dir.Debian }}/builds"
+  Windows: "c:/b"  # long filenames will overflow
+buildkite_agent_hooks_dir:
+  Debian: "{{ buildkite_agent_home_dir.Debian }}/hooks"
+  Windows: "{{ buildkite_agent_home_dir.Windows }}/hooks"  # long filenames will overflow
+buildkite_agent_plugins_dir:
+  Debian: "{{ buildkite_agent_home_dir.Debian }}/plugins"
+  Windows: "{{ buildkite_agent_home_dir.Windows }}/plugins"  # long filenames will overflow
+
 # version related
 buildkite_agent_allow_latest: yes
 buildkite_agent_version: "3.4.0"
