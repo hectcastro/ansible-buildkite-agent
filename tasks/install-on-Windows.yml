@@ -21,35 +21,35 @@
 - name: make the user home directory
   win_file:
     state: directory
-    path: 'c:\users\buildkite-agent'
+    path: 'c:/users/buildkite-agent'
 
 - name: make the install directory
   win_file:
     state: directory
-    path: 'c:\program files\buildkite-agent'
+    path: 'c:/program files/buildkite-agent'
 
 - name: make the application-data directory
   win_file:
     state: directory
-    path: 'c:\programdata\buildkite-agent'
+    path: 'c:/programdata/buildkite-agent'
 
 - name: fetch buildkite-agent windows release
   win_get_url:
     url: https://github.com/buildkite/agent/releases/download/v{{ buildkite_agent_version }}/buildkite-agent-windows-amd64-{{ buildkite_agent_version }}.zip
-    dest: 'c:\windows\temp\buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
+    dest: 'c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
     timeout: 30
 
 - name: unzip the release
   win_unzip:
-    src: 'c:\windows\temp\buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
-    dest: 'c:\program files\buildkite-agent'
-    creates: 'c:\program files\buildkite-agent\buildkite-agent.exe'
+    src: 'c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
+    dest: 'c:/program files/buildkite-agent'
+    creates: 'c:/program files/buildkite-agent/buildkite-agent.exe'
     delete_archive: yes
 
 - name: render the configuration template
   win_template:
     src: "buildkite-agent.cfg.j2"
-    dest: 'c:\program files\buildkite-agent\buildkite-agent.cfg'
+    dest: 'c:/programdata/buildkite-agent/buildkite-agent.cfg'
   notify:
     - restart-windows-buildkite
 
@@ -65,7 +65,7 @@
     state: started
     # password lookup plugin will return the contents of the file if it exists
     password: "{{ lookup('password', '/tmp/bk-agent-password') }}"
-    application: 'c:\program files\buildkite-agent\buildkite-agent.exe'
-    app_parameters_free_form: start
-    stdout_file: 'c:\programdata\buildkite-agent\buildkite-agent.log'
-    stderr_file: 'c:\programdata\buildkite-agent\buildkite-agent.log'
+    application: 'c:/program files/buildkite-agent/buildkite-agent.exe'
+    app_parameters_free_form: start --config 'c:/programdata/buildkite-agent/buildkite-agent.cfg'
+    stdout_file: 'c:/programdata/buildkite-agent/buildkite-agent.log'
+    stderr_file: 'c:/programdata/buildkite-agent/buildkite-agent.log'
