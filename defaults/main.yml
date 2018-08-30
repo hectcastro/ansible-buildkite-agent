@@ -1,8 +1,13 @@
 ---
 # core
-buildkite_agent_conf_dir: "/etc/buildkite-agent"
+buildkite_agent_conf_dir:
+  Debian: "/etc/buildkite-agent"
+  Windows: "c:/programdata/buildkite-agent"
 buildkite_agent_count: 1
 buildkite_agent_debug: "false"
+buildkite_agent_home_dir:
+  Debian: "/var/lib/buildkite-agent"
+  Windows: "c:/users/buildkite-agent"
 buildkite_agent_token: ""
 buildkite_agent_windows_grant_admin: False
 

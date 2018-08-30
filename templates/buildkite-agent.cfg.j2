@@ -25,13 +25,13 @@ tags-from-gcp={{ buildkite_agent_tags_from_gcp }}
 bootstrap-script="{{ buildkite_agent_bootstrap_script }}"
 
 # Path to where the builds will run from
-build-path="/var/lib/buildkite-agent/builds"
+build-path="{{ buildkite_agent_home_dir[ansible_os_family] }}/builds"
 
 # Directory where the hook scripts are found
-hooks-path="/etc/buildkite-agent/hooks"
+hooks-path="{{ buildkite_agent_conf_dir[ansible_os_family] }}/hooks"
 
 # When plugins are installed they will be saved to this path
-plugins-path="/etc/buildkite-agent/plugins"
+plugins-path="{{ buildkite_agent_conf_dir[ansible_os_family] }}/plugins"
 
 # Flags to pass to the `git clone` command
 git-clone-flags={{ buildkite_agent_git_clone_flags }}
