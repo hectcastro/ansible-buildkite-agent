@@ -18,20 +18,17 @@
   notify:
     - restart-windows-buildkite
 
-- name: make the user home directory
+- name: make necessary directories
   win_file:
     state: directory
-    path: 'c:/users/buildkite-agent'
-
-- name: make the install directory
-  win_file:
-    state: directory
-    path: 'c:/program files/buildkite-agent'
-
-- name: make the application-data directory
-  win_file:
-    state: directory
-    path: 'c:/programdata/buildkite-agent'
+    path: '{{ item }}'
+  with_items:
+    - 'c:/program files/buildkite-agent'
+    - '{{ buildkite_agent_conf_dir.Windows }}'
+    - '{{ buildkite_agent_conf_dir.Windows }}/hooks'
+    - '{{ buildkite_agent_conf_dir.Windows }}/plugins'
+    - '{{ buildkite_agent_home_dir.Windows }}'
+    - '{{ buildkite_agent_home_dir.Windows }}/builds'
 
 - name: fetch buildkite-agent windows release
   win_get_url:
@@ -49,7 +46,7 @@
 - name: render the configuration template
   win_template:
     src: "buildkite-agent.cfg.j2"
-    dest: 'c:/programdata/buildkite-agent/buildkite-agent.cfg'
+    dest: '{{ buildkite_agent_conf_dir }}/buildkite-agent.cfg'
   notify:
     - restart-windows-buildkite
 
