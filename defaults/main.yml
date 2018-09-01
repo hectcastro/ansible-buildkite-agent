@@ -17,10 +17,10 @@ buildkite_agent_builds_dir:
   Windows: "c:/b"  # long filenames will overflow
 buildkite_agent_hooks_dir:
   Debian: "{{ buildkite_agent_home_dir.Debian }}/hooks"
-  Windows: "{{ buildkite_agent_home_dir.Windows }}/hooks"  # long filenames will overflow
+  Windows: "{{ buildkite_agent_home_dir.Windows }}/hooks"
 buildkite_agent_plugins_dir:
   Debian: "{{ buildkite_agent_home_dir.Debian }}/plugins"
-  Windows: "{{ buildkite_agent_home_dir.Windows }}/plugins"  # long filenames will overflow
+  Windows: "{{ buildkite_agent_home_dir.Windows }}/plugins"
 
 # version related
 buildkite_agent_allow_latest: yes
