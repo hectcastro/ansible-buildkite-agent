@@ -24,15 +24,14 @@
     path: '{{ item }}'
   with_items:
     - 'c:/program files/buildkite-agent'
-    - '{{ buildkite_agent_conf_dir.Windows }}'
-    - '{{ buildkite_agent_hooks_dir.Windows }}'
-    - '{{ buildkite_agent_plugins_dir.Windows }}'
-    - '{{ buildkite_agent_home_dir.Windows }}'
-    - '{{ buildkite_agent_builds_dir.Windows }}'
+    - '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
+    - '{{ buildkite_agent_hooks_dir[ansible_os_family] }}'
+    - '{{ buildkite_agent_plugins_dir[ansible_os_family] }}'
+    - '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
 
 - name: Allow user full control inside builds
   win_acl:
-    path: '{{ buildkite_agent_builds_dir.Windows }}'
+    path: '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
     user: buildkite-agent
     rights: FullControl
     type: allow
@@ -55,7 +54,7 @@
 - name: render the configuration template
   win_template:
     src: "buildkite-agent.cfg.j2"
-    dest: '{{ buildkite_agent_conf_dir.Windows }}/buildkite-agent.cfg'
+    dest: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg'
   notify:
     - restart-windows-buildkite
 
@@ -72,6 +71,6 @@
     # password lookup plugin will return the contents of the file if it exists
     password: "{{ lookup('password', '/tmp/bk-agent-password') }}"
     application: 'c:/program files/buildkite-agent/buildkite-agent.exe'
-    app_parameters_free_form: start --config '{{ buildkite_agent_conf_dir.Windows }}/buildkite-agent.cfg'
-    stdout_file: '{{ buildkite_agent_conf_dir.Windows }}/buildkite-agent.log'
-    stderr_file: '{{ buildkite_agent_conf_dir.Windows }}/buildkite-agent.log'
+    app_parameters_free_form: start --config '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg'
+    stdout_file: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log'
+    stderr_file: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log'

@@ -25,7 +25,7 @@
 - name: Configure Buildkite
   template:
     src: "buildkite-agent.cfg.j2"
-    dest: "{{ buildkite_agent_conf_dir }}/buildkite-agent.cfg"
+    dest: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg"
     owner: buildkite-agent
     group: buildkite-agent
     mode: "0600"
