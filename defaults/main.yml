@@ -29,7 +29,9 @@ buildkite_agent_build_number: "2484"
 
 # configuration values, see https://buildkite.com/docs/agent/v3/configuration
 # note: the booleans are quoted otherwise they are rendered capitalised.
-buildkite_agent_bootstrap_script: "buildkite-agent bootstrap"
+buildkite_agent_bootstrap_script:
+  Debian: "buildkite-agent bootstrap"
+  Windows: "buildkite-agent bootstrap"
 buildkite_agent_git_clean_flags: "-fxdq"
 buildkite_agent_git_clone_flags: "-v"
 buildkite_agent_no_color: "false"
