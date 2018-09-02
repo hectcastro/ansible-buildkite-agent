@@ -18,25 +18,13 @@
   notify:
     - restart-windows-buildkite
 
-- name: make necessary directories
+- name: make necessary directories that are safe ahead of user instantiation by service
   win_file:
     state: directory
     path: '{{ item }}'
   with_items:
     - 'c:/program files/buildkite-agent'
     - '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
-    - '{{ buildkite_agent_hooks_dir[ansible_os_family] }}'
-    - '{{ buildkite_agent_plugins_dir[ansible_os_family] }}'
-    - '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
-
-- name: Allow user full control inside builds
-  win_acl:
-    path: '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
-    user: buildkite-agent
-    rights: FullControl
-    type: allow
-    state: present
-    inherit: ContainerInherit, ObjectInherit
 
 - name: fetch buildkite-agent windows release
   win_get_url:
@@ -61,8 +49,10 @@
 - name: install nssm to manage the process as a service
   win_chocolatey:
     name: nssm
-    version: 2.24.101.20180116
+    version: "{{ buildkite_agent_nssm_version }}"
 
+# starting the service triggers the home directory to be created.
+# if the home directory exists already, windows will dodge that and not use it.
 - name: configure buildkite-agent as an nssm service
   win_nssm:
     name: buildkite-agent
@@ -74,3 +64,21 @@
     app_parameters_free_form: start --config '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg'
     stdout_file: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log'
     stderr_file: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log'
+
+- name: make necessary directories, after user home directory exists
+  win_file:
+    state: directory
+    path: '{{ item }}'
+  with_items:
+    - '{{ buildkite_agent_hooks_dir[ansible_os_family] }}'
+    - '{{ buildkite_agent_plugins_dir[ansible_os_family] }}'
+    - '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
+
+- name: Allow user full control inside builds directory
+  win_acl:
+    path: '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
+    user: buildkite-agent
+    rights: FullControl
+    type: allow
+    state: present
+    inherit: ContainerInherit, ObjectInherit

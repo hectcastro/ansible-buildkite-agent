@@ -45,6 +45,12 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_no_plugins`
 - `buildkite_agent_no_color`
 
+### Miscellaneous
+
+- `buildkite_agent_nssm_version` - Which version of [NSSM] to use to manage the buildkite-agent process as a service.
+
 ## Example Playbook
 
 See the [examples](./examples/) directory.
+
+[NSSM]: https://nssm.cc
