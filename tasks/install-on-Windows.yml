@@ -65,6 +65,11 @@
     stdout_file: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log'
     stderr_file: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log'
 
+- name: restart the service to force the home directory
+  win_service:
+    name: buildkite-agent
+    state: restarted
+
 - name: make necessary directories, after user home directory exists
   win_file:
     state: directory
