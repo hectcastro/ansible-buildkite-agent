@@ -36,7 +36,7 @@
 - name: Turn off the installed service
   service:
     name: buildkite-agent
-    enabled: no
+    enabled: false
     state: stopped
 
 - name: "Create buildkite-agent service instances"
