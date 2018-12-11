@@ -1,0 +1,10 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+
+  tasks:
+    - name: install apt-transport-https
+      apt:
+        pkg: apt-transport-https
+        state: present
