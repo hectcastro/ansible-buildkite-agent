@@ -40,5 +40,8 @@
     state: stopped
 
 - name: "Create buildkite-agent service instances"
-  systemd: name=buildkite-agent@{{item}} state=started enabled=yes
+  systemd:
+    name: buildkite-agent@{{ item }}.service
+    state: started
+    enabled: true
   with_sequence: start=1 end={{buildkite_agent_count}} stride=1
