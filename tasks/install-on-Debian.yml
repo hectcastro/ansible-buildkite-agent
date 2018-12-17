@@ -46,4 +46,4 @@
     daemon_reload: true
     state: started
     enabled: true
-  with_sequence: start=1 end={{buildkite_agent_count}} stride=1
+  with_sequence: start=1 end={{ buildkite_agent_count }} stride=1
