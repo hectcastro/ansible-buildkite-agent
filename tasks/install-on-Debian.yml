@@ -39,7 +39,7 @@
     enabled: false
     state: stopped
 
-- name: "Create buildkite-agent service instances"
+- name: create buildkite-agent service instances
   systemd:
     name: buildkite-agent@{{ item }}.service
     state: started
