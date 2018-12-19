@@ -2,18 +2,18 @@
 - name: restart-systemd-buildkite
   systemd: name=buildkite-agent@{{item}} state=restarted
   with_sequence: start=1 end={{buildkite_agent_count}} stride=1
-  when: ansible_os_family == "Debian" && buildkite_agent_allow_service_startup[ansible_os_family]
+  when: ansible_os_family == "Debian" and buildkite_agent_allow_service_startup[ansible_os_family]
 
 - name: restart-windows-buildkite
   win_service:
     name: buildkite-agent
     state: restarted
-  when: ansible_os_family == "Windows" && buildkite_agent_allow_service_startup[ansible_os_family]
+  when: ansible_os_family == "Windows" and buildkite_agent_allow_service_startup[ansible_os_family]
 
 - name: Restart Buildkite Agent and Register for Login
   command: /usr/local/bin/brew services restart buildkite/buildkite/buildkite-agent
-  when: ansible_os_family == "Darwin" && buildkite_agent_allow_service_startup[ansible_os_family]
+  when: ansible_os_family == "Darwin" and buildkite_agent_allow_service_startup[ansible_os_family]
 
 - name: Start Buildkite Agent and Register for Login
   command: /usr/local/bin/brew services start buildkite/buildkite/buildkite-agent
-  when: ansible_os_family == "Darwin" && buildkite_agent_allow_service_startup[ansible_os_family]
+  when: ansible_os_family == "Darwin" and buildkite_agent_allow_service_startup[ansible_os_family]
