@@ -61,6 +61,10 @@ Variable names below map to [the agent configuration documentation](https://buil
 
 - `buildkite_agent_load_bash_profile` - Load `$HOME/.bash_profile` with buildkite agent environment hook. Ensures agent will load with bash environment.
 
+### Debugging
+
+- `buildkite_agent_expose_secrets` - if `true`, expose secrets to the ansible log output. Normally they are suppressed via `no_log`.
+
 ## Example Playbook
 
 See the [examples](./examples/) directory.

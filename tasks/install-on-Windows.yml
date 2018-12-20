@@ -1,11 +1,15 @@
 ---
+- name: make password for user
+  set_fact:
+    user_password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,punctuation') }}"
+  no_log: "{{ not buildkite_agent_expose_secrets | default(true) }}"
+
 - name: make the user
   win_user:
     description: "Runs BuildKite jobs. See https://buildkite.com/docs/agent/v3/windows."
     name: "buildkite-agent"
     # TODO: Single static file with no isolation between runs is unsafe (but that's unlikely to occur)
-    # TODO: remove the password file afterwards
-    password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,@') }}"
+    password: "{{ user_password }}"
     password_never_expires: yes
     user_cannot_change_password: yes
 
@@ -59,7 +63,7 @@
     user: buildkite-agent
     state: "{{ 'started' if buildkite_agent_allow_service_startup[ansible_os_family] else 'present' }}"
     # password lookup plugin will return the contents of the file if it exists
-    password: "{{ lookup('password', '/tmp/bk-agent-password') }}"
+    password: "{{ user_password }}"
     application: "c:/program files/buildkite-agent/buildkite-agent.exe"
     app_parameters_free_form: start --config '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg'
     stdout_file: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log"
