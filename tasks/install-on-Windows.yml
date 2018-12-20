@@ -74,11 +74,13 @@
     - '{{ buildkite_agent_plugins_dir[ansible_os_family] }}'
     - '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
 
-- name: Allow user full control inside builds directory
+- name: Allow user full control inside necessary locations
   win_acl:
-    path: '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
+    path: "{{ item }}"
     user: buildkite-agent
     rights: FullControl
     type: allow
     state: present
     inherit: ContainerInherit, ObjectInherit
+  with_items:
+    - "{{ buildkite_agent_builds_dir[ansible_os_family] }}"
