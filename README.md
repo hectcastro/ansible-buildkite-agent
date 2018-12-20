@@ -15,7 +15,7 @@ An Ansible role to install the [Buildkite Agent](https://buildkite.com/docs/agen
 ### Paths-related
 
 - `buildkite_agent_builds_dir` - Path to where agent will perform builds.
-  - Note: on Windows, this is `c:/b` because long filenames still cause a problem.
+  - Note: on Windows, this defaults to `c:/b` because long filenames still cause problems in the 21st Century.
 - `buildkite_agent_hooks_dir` - Path to where agent will look for hooks.
 - `buildkite_agent_plugins_dir` - Path to where agent will look for plugins.
 
