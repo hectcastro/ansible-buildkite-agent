@@ -3,7 +3,9 @@ galaxy_info:
   author: Hector Castro
   description: An Ansible role to install the Buildkite Agent.
   license: Apache
-  min_ansible_version: 2.4
+  # 2.7.5 because https://github.com/ansible/ansible/issues/48728 via
+  # https://github.com/ansible/ansible/blob/stable-2.7/changelogs/CHANGELOG-v2.7.rst#bugfixes
+  min_ansible_version: 2.7.5
   platforms:
     - name: Ubuntu
       versions:
