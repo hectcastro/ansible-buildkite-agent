@@ -3,7 +3,7 @@
 buildkite_agent_conf_dir:
   Darwin: "/usr/local/etc/buildkite-agent"
   Debian: "/etc/buildkite-agent"
-  Windows: "c:/programdata/buildkite-agent"
+  Windows: "c:/buildkite-agent"
 buildkite_agent_count: 1
 buildkite_agent_debug: "false"
 buildkite_agent_home_dir:
@@ -48,6 +48,10 @@ buildkite_agent_no_pty: "false"
 buildkite_agent_no_ssh_keyscan: "false"
 buildkite_agent_priority: 1
 buildkite_agent_queue: "default"
+buildkite_agent_start_parameters:
+  Darwin: ""
+  Debian: ""
+  Windows: "--config {{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg"
 buildkite_agent_tags: []
 buildkite_agent_tags_from_ec2: "false"
 buildkite_agent_tags_from_ec2_tags: "false"

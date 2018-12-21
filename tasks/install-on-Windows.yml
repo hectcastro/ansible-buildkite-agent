@@ -65,7 +65,7 @@
     # password lookup plugin will return the contents of the file if it exists
     password: "{{ user_password }}"
     application: "c:/program files/buildkite-agent/buildkite-agent.exe"
-    app_parameters_free_form: start --config '{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg'
+    app_parameters_free_form: start {{ buildkite_agent_start_parameters[ansible_os_family] }}
     stdout_file: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log"
     stderr_file: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.log"
 
