@@ -1,2 +1,4 @@
 .vagrant
+.venv
+.vscode
 *.retry
