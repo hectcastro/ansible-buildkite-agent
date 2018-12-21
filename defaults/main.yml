@@ -60,8 +60,8 @@ buildkite_agent_tags_from_host: "false"
 
 # Debian options
 buildkite_agent_allow_latest: yes
-buildkite_agent_version: "3.4.0"
-buildkite_agent_build_number: "2484"
+buildkite_agent_version: "3.7.0"
+buildkite_agent_build_number: "2659"
 
 # Windows options
 buildkite_agent_nssm_version: "2.24.101.20180116"
