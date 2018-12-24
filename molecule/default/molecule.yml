@@ -8,6 +8,7 @@ lint:
 platforms:
   - name: instance
     image: solita/ubuntu-systemd:latest
+    privileged: true
     command: /sbin/init
     capabilities:
       - SYS_ADMIN
@@ -15,6 +16,8 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
+  options:
+    vvv: true
   lint:
     name: ansible-lint
 scenario:
