@@ -43,6 +43,11 @@
     creates: 'c:/program files/buildkite-agent/buildkite-agent.exe'
     delete_archive: yes
 
+- name: delete the shipped configuration stub to avoid binary picking it up (buildkite/agent#881)
+  win_file:
+    state: absent
+    path: c:/program files/buildkite-agent/buildkite-agent.cfg
+
 - name: render the configuration template
   win_template:
     src: "buildkite-agent.cfg.j2"
