@@ -58,7 +58,7 @@
 - name: install nssm to manage the process as a service
   win_chocolatey:
     name: nssm
-    version: "{{ buildkite_agent_nssm_version }}"
+    version: "{{ buildkite_agent_nssm_version | default('2.24.101.20180116') }}"
 
 # starting the service triggers the home directory to be created.
 # if the home directory exists already, windows will dodge that and not use it.
