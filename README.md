@@ -7,10 +7,11 @@ An Ansible role to install the [Buildkite Agent](https://buildkite.com/docs/agen
 ### Core
 
 - `buildkite_agent_allow_service_startup` - if false, this role will not attempt to re|start the buildkite-agent service. This is useful if you use alternative means to provision the registration token.
-- `buildkite_agent_count` - Number of agents [if you want to run multiple per host](https://buildkite.com/docs/agent/v3/ubuntu#running-multiple-agents).
 - `buildkite_agent_conf_dir` - Buildkite Agent configuration directory (default: `/etc/buildkite-agent`)
+- `buildkite_agent_count` - Number of agents [if you want to run multiple per host](https://buildkite.com/docs/agent/v3/ubuntu#running-multiple-agents).
+- `buildkite_agent_debug` - Flag to enable Buildkite Agent debugging.
+- `buildkite_agent_start_parameters` - supply parameters for the `buildkite start` command.
 - `buildkite_agent_token` - Buildkite agent registration token. Available from `https://buildkite.com/organizations/{org-slug}/agents`.
-- `buildkite_agent_debug` - Flag to enable Buildkite Agent debugging
 
 ### Paths-related
 
