@@ -9,7 +9,7 @@
 - homebrew:
     name: buildkite-agent
     state: latest
-    update_homebrew: yes
+    update_homebrew: true
 
 - name: Configure Buildkite
   template:

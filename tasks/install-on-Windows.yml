@@ -10,8 +10,8 @@
     name: "buildkite-agent"
     # TODO: Single static file with no isolation between runs is unsafe (but that's unlikely to occur)
     password: "{{ user_password }}"
-    password_never_expires: yes
-    user_cannot_change_password: yes
+    password_never_expires: true
+    user_cannot_change_password: true
 
 - name: grant administrator privileges to user
   win_group_membership:
@@ -41,7 +41,7 @@
     src: 'c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
     dest: 'c:/program files/buildkite-agent'
     creates: 'c:/program files/buildkite-agent/buildkite-agent.exe'
-    delete_archive: yes
+    delete_archive: true
 
 - name: delete the shipped configuration stub to avoid binary picking it up (buildkite/agent#881)
   win_file:

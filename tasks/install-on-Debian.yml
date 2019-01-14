@@ -34,11 +34,16 @@
 
 # because: we run the template unit
 - name: Turn off the installed service
-  service:
-    name: buildkite-agent
-    enabled: no
+  systemd:
+    name: buildkite-agent.service
+    daemon_reload: true
+    enabled: false
     state: stopped
 
-- name: "Create buildkite-agent service instances"
-  systemd: name=buildkite-agent@{{item}} state=started enabled=yes
-  with_sequence: start=1 end={{buildkite_agent_count}} stride=1
+- name: create buildkite-agent service instances
+  systemd:
+    name: buildkite-agent@{{ item }}.service
+    daemon_reload: true
+    state: started
+    enabled: true
+  with_sequence: start=1 end={{ buildkite_agent_count }} stride=1

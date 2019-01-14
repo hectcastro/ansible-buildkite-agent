@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: True
+  become: true
 
   pre_tasks:
     - name: Update APT cache
