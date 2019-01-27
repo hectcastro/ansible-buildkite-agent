@@ -1,9 +1,9 @@
 ---
 # core
-buildkite_agent_conf_dir:
+buildkite_agent_conf_dir:  # https://github.com/buildkite/agent/blob/master/clicommand/agent_start.go#L100
   Darwin: "/usr/local/etc/buildkite-agent"
   Debian: "/etc/buildkite-agent"
-  Windows: "c:/buildkite-agent"
+  Windows: "c:/users/buildkite-agent/AppData/Local/buildkite-agent"
 buildkite_agent_count: 1
 buildkite_agent_debug: "false"
 buildkite_agent_hide_secrets: true
@@ -19,6 +19,8 @@ buildkite_agent_allow_service_startup:
   Darwin: true
   Debian: true
   Windows: true
+# If you want to see generated user password in your ansible output for debugging, set to true.
+buildkite_agent_expose_secrets: false
 
 # paths config
 buildkite_agent_builds_dir:
