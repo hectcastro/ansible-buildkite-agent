@@ -13,6 +13,13 @@
     password_never_expires: yes
     user_cannot_change_password: yes
 
+# when a user is created, their profile directory only starts to exist after first process / logon as that user.
+# we definitely need this to exist for things like .ssh/* and friends.
+- name: make the user profile
+  win_user_profile:
+    username: "buildkite-agent"
+    state: present
+
 - name: grant administrator privileges to user
   win_group_membership:
     name: Administrators
