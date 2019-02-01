@@ -2,7 +2,7 @@
 - name: make password for user
   set_fact:
     user_password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,punctuation') }}"
-  no_log: "{{ not buildkite_agent_expose_secrets | default(true) }}"
+  no_log: "{{ buildkite_agent_hide_secrets | default(true) }}"
 
 - name: make the user
   win_user:
