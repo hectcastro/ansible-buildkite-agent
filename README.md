@@ -64,7 +64,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 
 ### Debugging
 
-- `buildkite_agent_expose_secrets` - if `true`, expose secrets to the ansible log output. Normally they are suppressed via `no_log`.
+- `buildkite_agent_hide_secrets` - if `false`, show secrets in the ansible log output. Normally they are suppressed via `no_log`.
 
 ## Example Playbook
 

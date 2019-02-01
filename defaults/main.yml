@@ -6,6 +6,7 @@ buildkite_agent_conf_dir:
   Windows: "c:/buildkite-agent"
 buildkite_agent_count: 1
 buildkite_agent_debug: "false"
+buildkite_agent_hide_secrets: true
 buildkite_agent_home_dir:
   Darwin: "/usr/local/var/buildkite-agent"
   Debian: "/var/lib/buildkite-agent"
