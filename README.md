@@ -48,6 +48,7 @@ Variable names below map to [the agent configuration documentation](https://buil
   - **NOTE:** ignored, on Windows (no package manager install option).
 - `buildkite_agent_version` - the main semantic version number to install, when `buildkite_agent_allow_latest` is `False`.
 - `buildkite_agent_build_number` - the build number (ubuntu package name includes this).
+- `buildkite_agent_systemd_override_template` - the template source for the systemd unit override.
 
 #### Windows
 

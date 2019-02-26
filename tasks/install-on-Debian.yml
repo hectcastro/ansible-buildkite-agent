@@ -34,7 +34,7 @@
 
 - name: Create systemd unit override
   template:
-    src: buildkite-agent.override.conf.j2
+    src: "{{ buildkite_agent_systemd_override_template }}"
     dest: /etc/systemd/system/buildkite-agent.service.d/override.conf
     owner: buildkite-agent
     group: buildkite-agent
