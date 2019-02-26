@@ -32,6 +32,11 @@
   notify:
     - restart-systemd-buildkite
 
+- name: Create systemd unit override directory
+  file:
+    path: /etc/systemd/system/buildkite-agent.service.d
+    state: directory
+
 - name: Create systemd unit override
   template:
     src: "{{ buildkite_agent_systemd_override_template }}"
