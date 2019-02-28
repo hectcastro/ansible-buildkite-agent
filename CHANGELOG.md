@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `buildkite_agent_allow_service_startup` option.
 - `buildkite_agent_expose_secrets` option.
 - `buildkite_agent_start_parameters` option.
-- `buildkite_tags_from_gcp_labels` option.
+- `buildkite_agent_tags_from_gcp_labels` option.
 
 ## 1.1.0 - 2018-12-11
 
