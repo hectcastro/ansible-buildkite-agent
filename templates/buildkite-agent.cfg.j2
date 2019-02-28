@@ -16,8 +16,11 @@ tags-from-ec2={{ buildkite_agent_tags_from_ec2 }}
 # Include the host's EC2 tags as tags
 tags-from-ec2-tags={{ buildkite_agent_tags_from_ec2_tags }}
 
-# Include the host's Google Cloud meta-data as tags (instance-id, machine-type, preemptible, project-id, region, and zone)
+# Include the host's Google Cloud instance meta-data as tags (instance-id, machine-type, preemptible, project-id, region, and zone)
 tags-from-gcp={{ buildkite_agent_tags_from_gcp }}
+
+# Include the host's Google Cloud instance labels as tags
+tags-from-gcp-labels={{ buildkite_agent_tags_from_gcp_labels }}
 
 # Include the host's meta-data as tags (`hostname`, `machine-id`, and `os`)
 tags-from-host={{ buildkite_agent_tags_from_host }}

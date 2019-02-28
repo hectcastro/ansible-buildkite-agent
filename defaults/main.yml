@@ -57,6 +57,7 @@ buildkite_agent_tags: []
 buildkite_agent_tags_from_ec2: "false"
 buildkite_agent_tags_from_ec2_tags: "false"
 buildkite_agent_tags_from_gcp: "false"
+buildkite_agent_tags_from_gcp_labels: "false"
 buildkite_agent_tags_from_host: "false"
 
 # Debian options
