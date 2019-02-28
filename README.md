@@ -37,6 +37,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_tags_from_ec2_tags`
 - `buildkite_agent_tags_from_ec2`
 - `buildkite_agent_tags_from_gcp`
+- `buildkite_agent_tags_from_gcp_labels`
 - `buildkite_agent_tags_from_host`
 - `buildkite_agent_tags` - List of tags for agent; Don't use this to set `queue`, as that is handled via `buildkite_agent_queue` (default: `[]`)
 
