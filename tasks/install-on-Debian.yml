@@ -36,14 +36,17 @@
   file:
     path: /etc/systemd/system/buildkite-agent.service.d
     state: directory
+    owner: root
+    group: root
+    mode: "0755"
 
 - name: Create systemd unit override
   template:
     src: "{{ buildkite_agent_systemd_override_template }}"
-    dest: /etc/systemd/system/buildkite-agent.service.d/override.conf
-    owner: buildkite-agent
-    group: buildkite-agent
-    mode: "0600"
+    dest: /etc/systemd/system/buildkite-agent.service.d/100-set-start-spawn.conf
+    owner: root
+    group: root
+    mode: "0644"
   notify:
     - restart-systemd-buildkite
 
