@@ -32,13 +32,27 @@
   notify:
     - restart-systemd-buildkite
 
-# because: we run the template unit
-- name: Turn off the installed service
-  service:
-    name: buildkite-agent
-    enabled: no
-    state: stopped
+- name: Create systemd unit override directory
+  file:
+    path: /etc/systemd/system/buildkite-agent.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
 
-- name: "Create buildkite-agent service instances"
-  systemd: name=buildkite-agent@{{item}} state=started enabled=yes
-  with_sequence: start=1 end={{buildkite_agent_count}} stride=1
+- name: Create systemd unit override
+  template:
+    src: "{{ buildkite_agent_systemd_override_template }}"
+    dest: /etc/systemd/system/buildkite-agent.service.d/100-set-start-spawn.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - restart-systemd-buildkite
+
+- name: Create buildkite-agent service instance
+  systemd:
+    name: buildkite-agent
+    state: started
+    enabled: true
+    daemon_reload: true
