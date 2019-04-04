@@ -56,3 +56,4 @@
     state: started
     enabled: true
     daemon_reload: true
+  when: ansible_os_family == "Debian" and buildkite_agent_allow_service_startup[ansible_os_family]
