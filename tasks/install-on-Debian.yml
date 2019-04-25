@@ -53,6 +53,6 @@
 - name: Create buildkite-agent service instance
   systemd:
     name: buildkite-agent
-    state: started
+    state: "{{ buildkite_agent_allow_service_startup[ansible_os_family] | ternary('started', 'stopped') }}"
     enabled: true
     daemon_reload: true
