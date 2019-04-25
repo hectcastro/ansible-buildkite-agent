@@ -40,6 +40,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_tags_from_gcp_labels`
 - `buildkite_agent_tags_from_host`
 - `buildkite_agent_tags` - List of tags for agent; Don't use this to set `queue`, as that is handled via `buildkite_agent_queue` (default: `[]`)
+- `buildkite_agent_tags_including_queue` - List of tags for the agent that include `queue`. (default: `queue={{ buildkite_agent_queue}},{{ buildkite_agent_tags }}`)
 
 ### Platform specific settings
 
