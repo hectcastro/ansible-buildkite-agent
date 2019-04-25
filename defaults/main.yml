@@ -54,6 +54,7 @@ buildkite_agent_start_parameters:
   Debian: ""
   Windows: "--config {{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg"
 buildkite_agent_tags: []
+buildkite_agent_tags_including_queue: "{{ ([['queue', buildkite_agent_queue] | join('=')] + buildkite_agent_tags) | join(',') }}"
 buildkite_agent_tags_from_ec2: "false"
 buildkite_agent_tags_from_ec2_tags: "false"
 buildkite_agent_tags_from_gcp: "false"
