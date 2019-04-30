@@ -1,7 +1,8 @@
 ---
 - name: restart-systemd-buildkite
-  systemd: name=buildkite-agent@{{item}} state=restarted
-  with_sequence: start=1 end={{buildkite_agent_count}} stride=1
+  systemd:
+    name: buildkite-agent
+    state: restarted
   when: ansible_os_family == "Debian" and buildkite_agent_allow_service_startup[ansible_os_family]
 
 - name: restart-windows-buildkite
