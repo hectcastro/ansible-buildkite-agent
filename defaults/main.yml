@@ -37,7 +37,7 @@ buildkite_agent_plugins_dir:
 # configuration values, see https://buildkite.com/docs/agent/v3/configuration
 # note: the booleans are quoted otherwise they are rendered capitalised.
 buildkite_agent_bootstrap_script:
-  Darwin: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/bootstrap.sh"
+  Darwin: "buildkite-agent bootstrap"
   Debian: "buildkite-agent bootstrap"
   Windows: "buildkite-agent bootstrap"
 buildkite_agent_git_clean_flags: "-fxdq"
