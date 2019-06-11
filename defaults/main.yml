@@ -70,6 +70,7 @@ buildkite_agent_build_number: "2659"
 buildkite_agent_systemd_override_template: buildkite-agent.override.conf.j2
 
 # Windows options
+buildkite_agent_nssm_exe: "C:/ProgramData/chocolatey/bin/nssm.exe"
 buildkite_agent_nssm_version: "2.24.101.20180116"
 buildkite_agent_platform: "amd64"
 buildkite_agent_windows_grant_admin: False

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 1.2.1 - 2019-04-25
 
+- `buildkite_agent_nssm_exe` option.
 - `buildkite_agent_tags_including_queue` option.
 
 ## 1.2.0 - 2019-03-16
