@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- take care of `win_nssm` deprecations within ansible 2.8.x.
+
 ## 1.2.1 - 2019-04-25
 
 - `buildkite_agent_nssm_exe` option.
