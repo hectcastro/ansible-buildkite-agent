@@ -110,4 +110,4 @@
     name: buildkite-agent
     username: buildkite-agent
     password: "{{ user_password }}"
-    state: "{{ 'started' if buildkite_agent_allow_service_startup[ansible_os_family] else 'present' }}"
+    state: "{{ 'started' if buildkite_agent_allow_service_startup[ansible_os_family] else 'stopped' }}"
