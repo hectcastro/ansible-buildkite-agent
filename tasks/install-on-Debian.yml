@@ -26,8 +26,8 @@
   template:
     src: "buildkite-agent.cfg.j2"
     dest: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg"
-    owner: buildkite-agent
-    group: buildkite-agent
+    owner: "{{ buildkite_agent_username }}"
+    group: "{{ buildkite_agent_username }}"
     mode: "0600"
   notify:
     - restart-systemd-buildkite
@@ -52,7 +52,7 @@
 
 - name: Create buildkite-agent service instance
   systemd:
-    name: buildkite-agent
+    name: "{{ buildkite_agent_username }}"
     state: "{{ buildkite_agent_allow_service_startup[ansible_os_family] | ternary('started', 'stopped') }}"
     enabled: true
     daemon_reload: true

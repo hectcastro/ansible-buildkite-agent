@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - take care of `win_nssm` deprecations within ansible 2.8.x.
 - make minimum ansible requirement be `2.8.0` because of `win_user_profile` use.
 
+- `buildkite_agent_username` option for configuring the name of the user to run the service as.
+- update default version to latest `3.13.2`
+
 ## 1.2.1 - 2019-04-25
 
 - `buildkite_agent_nssm_exe` option.

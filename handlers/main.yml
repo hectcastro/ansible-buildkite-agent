@@ -1,13 +1,13 @@
 ---
 - name: restart-systemd-buildkite
   systemd:
-    name: buildkite-agent
+    name: "{{ buildkite_agent_username }}"
     state: restarted
   when: ansible_os_family == "Debian" and buildkite_agent_allow_service_startup[ansible_os_family]
 
 - name: restart-windows-buildkite
   win_service:
-    name: buildkite-agent
+    name: "{{ buildkite_agent_username }}"
     state: restarted
   when: ansible_os_family == "Windows" and buildkite_agent_allow_service_startup[ansible_os_family]
 

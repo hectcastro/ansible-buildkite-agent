@@ -1,16 +1,17 @@
 ---
 # core
+buildkite_agent_username: "buildkite-agent"
 buildkite_agent_conf_dir:  # https://github.com/buildkite/agent/blob/master/clicommand/agent_start.go#L100
-  Darwin: "/usr/local/etc/buildkite-agent"
-  Debian: "/etc/buildkite-agent"
-  Windows: "c:/users/buildkite-agent/AppData/Local/buildkite-agent"
+  Darwin: "/usr/local/etc/{{ buildkite_agent_username }}"
+  Debian: "/etc/{{ buildkite_agent_username }}"
+  Windows: "c:/users/{{ buildkite_agent_username }}/AppData/Local/buildkite-agent"
 buildkite_agent_count: 1
 buildkite_agent_debug: "false"
 buildkite_agent_hide_secrets: true
 buildkite_agent_home_dir:
-  Darwin: "/usr/local/var/buildkite-agent"
-  Debian: "/var/lib/buildkite-agent"
-  Windows: "c:/users/buildkite-agent"
+  Darwin: "/usr/local/var/{{ buildkite_agent_username }}"
+  Debian: "/var/lib/{{ buildkite_agent_username }}"
+  Windows: "c:/users/{{ buildkite_agent_username }}"
 buildkite_agent_token: ""
 # Allow the handlers to re|start service during this role.
 # If you retrieve the registration token secret via some other means, setting these
@@ -65,8 +66,8 @@ buildkite_agent_tags_from_host: "false"
 
 # Debian options
 buildkite_agent_allow_latest: yes
-buildkite_agent_version: "3.12.0"
-buildkite_agent_build_number: "3051"
+buildkite_agent_version: "3.13.2"
+buildkite_agent_build_number: "3097"
 buildkite_agent_systemd_override_template: buildkite-agent.override.conf.j2
 
 # Windows options

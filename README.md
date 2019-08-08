@@ -41,6 +41,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_tags_from_host`
 - `buildkite_agent_tags` - List of tags for agent; Don't use this to set `queue`, as that is handled via `buildkite_agent_queue` (default: `[]`)
 - `buildkite_agent_tags_including_queue` - List of tags for the agent that include `queue`. (default: `queue={{ buildkite_agent_queue}},{{ buildkite_agent_tags }}`)
+- `buildkite_agent_username` - the username to run the `buildkite-agent` process/service as.
 
 ### Platform specific settings
 
@@ -56,11 +57,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 
 - `buildkite_agent_nssm_exe` - the full path to nssm.exe in case it's not on `PATH`.
 - `buildkite_agent_nssm_version` - Which version of [NSSM] to use to manage the buildkite-agent process as a service.
-- `buildkite_agent_windows_grant_admin` - If `True` make the `buildkite-agent` user be a member of the local `Administrators` group. You must assess your own security risk tradeoff with the necessity for Windows build tools needing privileges.
-
-##### Windows gotchas
-
-- Don't use the buildkite-agent user-profile directory for anything. It will not exist until _after_ the service has been started for the first time, because ... Windows.
+- `buildkite_agent_windows_grant_admin` - If `True` make the `buildkite_agent_username` user be a member of the local `Administrators` group. You must assess your own security risk tradeoff with the necessity for Windows build tools needing privileges.
 
 #### Darwin
 
