@@ -7,7 +7,7 @@
 - name: make the user
   win_user:
     description: "Runs BuildKite jobs. See https://buildkite.com/docs/agent/v3/windows."
-    name: "buildkite-agent"
+    name: "{{ buildkite_agent_username }}"
     # TODO: Single static file with no isolation between runs is unsafe (but that's unlikely to occur)
     password: "{{ user_password }}"
     password_never_expires: yes
@@ -17,14 +17,14 @@
 # we definitely need this to exist for things like .ssh/* and friends.
 - name: make the user profile
   win_user_profile:
-    username: "buildkite-agent"
+    username: "{{ buildkite_agent_username }}"
     state: present
 
 - name: grant administrator privileges to user
   win_group_membership:
     name: Administrators
     members:
-      - buildkite-agent
+      - "{{ buildkite_agent_username }}"
     state: "{{ 'present' if buildkite_agent_windows_grant_admin else 'absent' }}"
   notify:
     - restart-windows-buildkite
@@ -72,7 +72,7 @@
 - name: configure buildkite-agent as an nssm service
   win_nssm:
     name: buildkite-agent
-    user: buildkite-agent
+    user: "{{ buildkite_agent_username }}"
     state: "{{ 'started' if buildkite_agent_allow_service_startup[ansible_os_family] else 'present' }}"
     # password lookup plugin will return the contents of the file if it exists
     password: "{{ user_password }}"
@@ -93,7 +93,7 @@
 - name: Allow user full control inside necessary locations
   win_acl:
     path: "{{ item }}"
-    user: buildkite-agent
+    user: "{{ buildkite_agent_username }}"
     rights: FullControl
     type: allow
     state: present
