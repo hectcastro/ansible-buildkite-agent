@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- `buildkite_agent_username` option for configuring the name of the user to run the service as.
+- update default version to latest `3.13.2`
+
 ## 1.2.1 - 2019-04-25
 
 - `buildkite_agent_tags_including_queue` option.
-- `buildkite_agent_username` option for configuring the name of the user to run the service as.
 
 ## 1.2.0 - 2019-03-16
 
