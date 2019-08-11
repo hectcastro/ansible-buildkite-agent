@@ -43,7 +43,7 @@
 - name: Create systemd unit override
   template:
     src: "{{ buildkite_agent_systemd_override_template }}"
-    dest: /etc/systemd/system/buildkite-agent.service.d/100-set-start-spawn.conf
+    dest: /etc/systemd/system/buildkite-agent.service.d/100-buildkite-agent-overrides-from-role.conf
     owner: root
     group: root
     mode: "0644"

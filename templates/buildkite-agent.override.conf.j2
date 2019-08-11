@@ -5,3 +5,5 @@
 # https://askubuntu.com/questions/659267/how-do-i-override-or-configure-systemd-services
 ExecStart=
 ExecStart=/usr/bin/buildkite-agent start {{ buildkite_agent_start_parameters[ansible_os_family] }}
+
+User={{ buildkite_agent_username }}
