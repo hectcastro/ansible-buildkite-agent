@@ -66,8 +66,8 @@ buildkite_agent_tags_from_host: "false"
 
 # Debian options
 buildkite_agent_allow_latest: yes
-buildkite_agent_version: "3.13.2"
-buildkite_agent_build_number: "3097"
+buildkite_agent_version: "3.7.0"
+buildkite_agent_build_number: "2659"
 buildkite_agent_systemd_override_template: buildkite-agent.override.conf.j2
 
 # Windows options
