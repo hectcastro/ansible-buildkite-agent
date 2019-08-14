@@ -22,6 +22,12 @@
     state: present
   when: buildkite_agent_allow_latest == False
 
+# buildkite-agent user is created by deb package; if the username is customised, create that custom user.
+- name: Create the user to run the agent as if necessary
+  when: agent_username != "buildkite-agent"
+  user:
+    name: "{{ agent_username }}"
+
 - name: Configure Buildkite
   template:
     src: "buildkite-agent.cfg.j2"
