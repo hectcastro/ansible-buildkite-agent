@@ -12,6 +12,7 @@
     password: "{{ user_password }}"
     password_never_expires: yes
     user_cannot_change_password: yes
+  register: buildkite_agent_user
 
 - name: add account to Log on as a service
   win_user_right:
@@ -24,7 +25,7 @@
 # we definitely need this to exist for things like .ssh/* and friends.
 - name: make the user profile
   win_user_profile:
-    username: "{{ buildkite_agent_username }}"
+    username: "{{ buildkite_agent_user.sid }}"
     state: present
 
 - name: grant administrator privileges to user
