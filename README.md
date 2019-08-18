@@ -42,6 +42,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_tags` - List of tags for agent; Don't use this to set `queue`, as that is handled via `buildkite_agent_queue` (default: `[]`)
 - `buildkite_agent_tags_including_queue` - List of tags for the agent that include `queue`. (default: `queue={{ buildkite_agent_queue}},{{ buildkite_agent_tags }}`)
 - `buildkite_agent_username` - the username to run the `buildkite-agent` process/service as.
+- `buildkite_agent_user_description` - the description of the user to run the `buildkite-agent` process/service as.
 
 ### Platform specific settings
 

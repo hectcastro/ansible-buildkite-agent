@@ -6,7 +6,7 @@
 
 - name: make the user
   win_user:
-    description: "Runs BuildKite jobs. See https://buildkite.com/docs/agent/v3/windows."
+    description: "{{ buildkite_agent_user_description }}"
     name: "{{ buildkite_agent_username }}"
     # TODO: Single static file with no isolation between runs is unsafe (but that's unlikely to occur)
     password: "{{ user_password }}"

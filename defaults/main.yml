@@ -1,6 +1,7 @@
 ---
 # core
 buildkite_agent_username: "buildkite-agent"
+buildkite_agent_user_description: "Runs BuildKite jobs. See https://buildkite.com/docs/agent/v3/."
 buildkite_agent_conf_dir:  # https://github.com/buildkite/agent/blob/master/clicommand/agent_start.go#L100
   Darwin: "/usr/local/etc/buildkite-agent"
   Debian: "/etc/buildkite-agent"

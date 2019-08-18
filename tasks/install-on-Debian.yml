@@ -28,6 +28,7 @@
   user:
     name: "{{ agent_username }}"
     home: "/var/lib/{{ agent_username }}"  # because the deb creates /var/lib/buildkite-agent by default.
+    description: "{{ buildkite_agent_user_description }}"
 
 - name: Configure Buildkite
   template:
