@@ -24,10 +24,10 @@
 
 # buildkite-agent user is created by deb package; if the username is customised, create that custom user.
 - name: Create the user to run the agent as if necessary
-  when: agent_username != "buildkite-agent"
+  when: buildkite_agent_username != "buildkite-agent"
   user:
-    name: "{{ agent_username }}"
-    home: "/var/lib/{{ agent_username }}"  # because the deb creates /var/lib/buildkite-agent by default.
+    name: "{{ buildkite_agent_username }}"
+    home: "/var/lib/{{ buildkite_agent_username }}"  # because the deb creates /var/lib/buildkite-agent by default.
     description: "{{ buildkite_agent_user_description }}"
 
 - name: Configure Buildkite
