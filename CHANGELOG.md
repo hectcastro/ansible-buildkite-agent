@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ...
 
+## 3.0.0 - 2019-11-13
+
+Version bump for breaking change. This is the same as 2.2.1.
+
+## 2.2.1 - 2019-11-12
+
+- fixes to ansible 2.9.0 updates.
+
+## 2.2.0 - 2019-11-07
+
+- porting to support ansible 2.9.0.
+
 ## 2.1.0 - 2019-08-20
 
 - `buildkite_agent_username` option for configuring the name of the user to run the service as.
