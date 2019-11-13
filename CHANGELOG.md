@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 3.0.0 - 2019-11-13
 
-Version bump for breaking change. This is the same as 2.2.1.
+Version bump for breaking change. This is the same as 2.2.1 with corrected meta/main.yml.
 
 ## 2.2.1 - 2019-11-12
 
