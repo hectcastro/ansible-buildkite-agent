@@ -17,6 +17,8 @@
   homebrew:
     name: buildkite-agent
     update_homebrew: no
+  environment:
+    HOMEBREW_NO_AUTO_UPDATE: 1
 
 - name: Configure Buildkite
   template:
@@ -34,3 +36,7 @@
   when: buildkite_agent_load_bash_profile == True
   notify:
     - "Restart Buildkite Agent and Register for Login"
+
+- name: Refresh homebrew to original state
+  command: brew update
+
