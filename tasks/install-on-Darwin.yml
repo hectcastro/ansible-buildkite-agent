@@ -7,11 +7,11 @@
     name: buildkite/buildkite
     state: present
 
+# Workaround for currently broken homebrew release of 2.3.0
 - name: Install buildkite-agent
-  homebrew:
-    name: buildkite-agent
-    state: latest
-    update_homebrew: yes
+  command: git checkout 2.2.17 && HOMEBREW_NO_AUTO_UPDATE=1 brew install buildkite-agent
+  args:
+    chdir: /usr/local/Homebrew
 
 - name: Configure Buildkite
   template:
