@@ -16,7 +16,6 @@
 - name: Install buildkite-agent
   homebrew:
     name: buildkite-agent
-    update_homebrew: no
   environment:
     HOMEBREW_NO_AUTO_UPDATE: 1
 
@@ -38,7 +37,7 @@
     - "Restart Buildkite Agent and Register for Login"
 
 - name: Reverting homebrew state back to HEAD
-  command: git checkout master
+  command: git checkout stable
   args:
     chdir: /usr/local/Homebrew
 
