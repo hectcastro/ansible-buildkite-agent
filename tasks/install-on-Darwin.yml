@@ -38,5 +38,5 @@
     - "Restart Buildkite Agent and Register for Login"
 
 - name: Refresh homebrew to original state
-  command: brew update
+  command: /usr/local/bin/brew update
 
