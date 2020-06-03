@@ -8,7 +8,7 @@
     state: present
 
 # Workaround for currently broken homebrew release of 2.3.0
-- name: Install buildkite-agent
+- name: Checkout the latest working commit of homebrew
   command: git checkout 2.2.17 
   args:
     chdir: /usr/local/Homebrew
