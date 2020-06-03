@@ -9,7 +9,7 @@
 
 # Workaround for currently broken homebrew release of 2.3.0
 - name: Install buildkite-agent
-  command: git checkout 2.2.17 && HOMEBREW_NO_AUTO_UPDATE=1 brew install buildkite-agent
+  command: git checkout "2.2.17" && HOMEBREW_NO_AUTO_UPDATE=1 brew install buildkite-agent
   args:
     chdir: /usr/local/Homebrew
 
