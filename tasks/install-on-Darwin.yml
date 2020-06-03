@@ -37,6 +37,11 @@
   notify:
     - "Restart Buildkite Agent and Register for Login"
 
+- name: Reverting homebrew state back to HEAD
+  command: git checkout master
+  args:
+    chdir: /usr/local/Homebrew
+
 - name: Refresh homebrew to original state
   command: /usr/local/bin/brew update
 
