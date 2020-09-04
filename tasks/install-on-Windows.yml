@@ -1,7 +1,7 @@
 ---
 - name: make password for user
   set_fact:
-    user_password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,punctuation') }}"
+    buildkite_agent_user_password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,punctuation') }}"
   no_log: "{{ buildkite_agent_hide_secrets | default(true) }}"
 
 - name: make the user
@@ -9,7 +9,7 @@
     description: "{{ buildkite_agent_user_description }}"
     name: "{{ buildkite_agent_username }}"
     # TODO: Single static file with no isolation between runs is unsafe (but that's unlikely to occur)
-    password: "{{ user_password }}"
+    password: "{{ buildkite_agent_user_password }}"
     password_never_expires: yes
     user_cannot_change_password: yes
   register: buildkite_agent_user
@@ -33,7 +33,7 @@
     name: Administrators
     members:
       - "{{ buildkite_agent_username }}"
-    state: "{{ 'present' if buildkite_agent_windows_grant_admin else 'absent' }}"
+    state: "{{ 'present' if buildkite_agent_grant_admin else 'absent' }}"
   notify:
     - restart-windows-buildkite
 
@@ -109,5 +109,5 @@
   win_service:
     name: buildkite-agent
     username: "{{ buildkite_agent_username }}"
-    password: "{{ user_password }}"
+    password: "{{ buildkite_agent_user_password }}"
     state: "{{ 'started' if buildkite_agent_allow_service_startup[ansible_os_family] else 'stopped' }}"

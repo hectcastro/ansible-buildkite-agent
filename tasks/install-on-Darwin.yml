@@ -13,6 +13,33 @@
     state: latest
     update_homebrew: yes
 
+- name: Create user
+  block:
+    - name: make password for user
+      set_fact:
+        buildkite_agent_user_password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,punctuation') }}"
+      no_log: "{{ buildkite_agent_hide_secrets | default(true) }}"
+
+    - name: Write scripts needed to make user
+      copy:
+        src: "{{ item }}"
+        dest: "/usr/local/bin/{{ item }}"
+        mode: 0755
+      with_items:
+        - "create-local-user.{{ ansible_os_family }}.sh"
+        - "kcpassword"
+
+    - name: Create user via script
+      shell: >-
+        /usr/local/bin/create-local-user.{{ ansible_os_family }}.sh 
+        '{{ agent_username }}'
+        '{{ buildkite_agent_grant_admin | ternary("true", "false") }}'
+      args:
+        creates: "/Users/{{ agent_username }}"
+      become: true
+      environment:
+        USER_PASSWORD: "{{ buildkite_agent_user_password }}"
+
 - name: Configure Buildkite
   template:
     src: "buildkite-agent.cfg.j2"
