@@ -46,6 +46,9 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_tags` - List of tags for agent; Don't use this to set `queue`, as that is handled via `buildkite_agent_queue` (default: `[]`)
 - `buildkite_agent_tags_including_queue` - List of tags for the agent that include `queue`. (default: `queue={{ buildkite_agent_queue}},{{ buildkite_agent_tags }}`)
 - `buildkite_agent_username` - the username to run the `buildkite-agent` process/service as.
+- `buildkite_agent_user_uid` - the user ID to make the user be, if specified.
+  - this is ignored on Windows.
+  - This is useful because it allows the UID to be well-known, which in turn allows people to build dockers which contain a work-user with this same UID, allowing them to avoid the otherwise-usual-problems where files are written into a host-mounted volume and the UIDs mismatch, bricking the host's filesystem for future builds.
 - `buildkite_agent_user_description` - the description of the user to run the `buildkite-agent` process/service as.
 
 ### Platform specific settings

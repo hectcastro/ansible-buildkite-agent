@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-...
+* Added: ability to create user (on Debian) with a specific UID.
+
+## 3.1.1: 2020-07-31
+
+* Fixed: systemd path to buildkite agent logs; needs to be a file, not a directory.
 
 ## 3.1.0 - 2020-02-26
 
