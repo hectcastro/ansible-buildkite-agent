@@ -8,7 +8,7 @@
   user:
     name: "{{ buildkite_agent_username }}"
     home: "/var/lib/{{ buildkite_agent_username }}"  # because the deb creates /var/lib/buildkite-agent by default.
-    uid: "{{ buildkite_agent_user_uid }}"
+    uid: "{{ buildkite_agent_user_uid | default(omit) }}"
     description: "{{ buildkite_agent_user_description }}"
 
 - name: Configure the Buildkite APT key
