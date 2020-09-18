@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-Fix: macOS can run `buildkite_agent_count` job-runners now.
+Fix: Use `buildkite_agent_count` to set multiple job-runners now.
 
 ## 3.2.0: 2020-09-09
 
