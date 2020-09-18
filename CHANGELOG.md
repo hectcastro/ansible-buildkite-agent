@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 3.2.1: 2020-11-18
+
+Add support to configure number of agents to spawn with launchd on macOS by setting the --spwan flag.
+
+* Added: `buildkite_agent_spawn` (which will default to env `BUILDKITE_AGENT_SPAWN`)
+* Fixed: `buildkite_agent_executable` for Darwin
+
 ## 3.2.0: 2020-09-09
 
 * Added: ability to create user (on Debian) with a specific UID.

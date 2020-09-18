@@ -70,6 +70,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 #### Darwin
 
 - `buildkite_agent_load_bash_profile` - Load `$HOME/.bash_profile` with buildkite agent environment hook. Ensures agent will load with bash environment.
+- `buildkite_agent_spawn` - The number of agents to spawn in launchd [if you want to run multiple per host](https://buildkite.com/docs/agent/v3/osx#running-multiple-agents). Similar to `buildkite_agent_count` but Darwin specific.
 
 ### Debugging
 
