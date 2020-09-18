@@ -4,6 +4,9 @@ token="{{ buildkite_agent_token }}"
 # The name of the agent
 name="%hostname-%n"
 
+# Number of agents to spawn
+spawn="{{ buildkite_agent_count | default('1') }}"
+
 # The priority of the agent (higher priorities are assigned work first)
 priority={{ buildkite_agent_priority }}
 

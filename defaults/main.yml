@@ -7,7 +7,6 @@ buildkite_agent_conf_dir:  # https://github.com/buildkite/agent/blob/master/clic
   Debian: "/etc/buildkite-agent"
   Windows: "c:/users/{{ buildkite_agent_username }}/AppData/Local/buildkite-agent"
 buildkite_agent_count: 1
-buildkite_agent_spawn: "{{ lookup('env', 'BUILDKITE_AGENT_SPAWN') }}"
 buildkite_agent_debug: "false"
 buildkite_agent_executable:
   Darwin: "/usr/local/bin/buildkite-agent"
