@@ -22,7 +22,7 @@
     mode: "0600" # macOS requires 0400 or 0600.
   notify:
     - "restart-darwin-buildkite"
-  when: buildkite_agent_spawn is defined
+  when: ansible_os_family == "Darwin" and buildkite_agent_allow_service_startup[ansible_os_family]
 
 - name: Configure Buildkite
   template:
