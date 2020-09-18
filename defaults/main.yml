@@ -9,7 +9,7 @@ buildkite_agent_conf_dir:  # https://github.com/buildkite/agent/blob/master/clic
 buildkite_agent_count: 1
 buildkite_agent_debug: "false"
 buildkite_agent_executable:
-  Darwin: "/usr/bin/buildkite-agent"
+  Darwin: "/usr/local/bin/buildkite-agent"
   Debian: "/usr/bin/buildkite-agent"
   Windows: "c:/program files/buildkite-agent/buildkite-agent.exe"
 buildkite_agent_hide_secrets: true

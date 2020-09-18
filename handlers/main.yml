@@ -11,10 +11,6 @@
     state: restarted
   when: ansible_os_family == "Windows" and buildkite_agent_allow_service_startup[ansible_os_family]
 
-- name: Restart Buildkite Agent and Register for Login
-  command: /usr/local/bin/brew services restart buildkite/buildkite/buildkite-agent
-  when: ansible_os_family == "Darwin" and buildkite_agent_allow_service_startup[ansible_os_family]
-
-- name: Start Buildkite Agent and Register for Login
-  command: /usr/local/bin/brew services start buildkite/buildkite/buildkite-agent
+- name: restart-darwin-buildkite
+  command: /usr/local/bin/brew services restart buildkite/buildkite/buildkite-agent {{ buildkite_agent_conf_dir[ansible_os_family] }}/homebrew.mxcl.buildkite-agent.plist
   when: ansible_os_family == "Darwin" and buildkite_agent_allow_service_startup[ansible_os_family]

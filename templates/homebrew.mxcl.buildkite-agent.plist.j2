@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>homebrew.mxcl.buildkite-agent</string>
+
+  <key>WorkingDirectory</key>
+  <string>/usr/local/bin</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{ buildkite_agent_executable[ansible_os_family] }}</string>
+    <string>start</string>
+    <string>--config</string>
+    <string>{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg</string>
+    <string>--spawn={{ buildkite_agent_count }}</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <dict>
+    <key>SuccessfulExit</key>
+    <false/>
+  </dict>
+
+  <key>ProcessType</key>
+  <string>Interactive</string>
+
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+
+  <key>StandardOutPath</key>
+  <string>{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log</string>
+</dict>
+</plist>

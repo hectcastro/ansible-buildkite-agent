@@ -13,13 +13,21 @@
     state: latest
     update_homebrew: yes
 
+- name: Configure Buildkite service
+  template:
+    src: "homebrew.mxcl.buildkite-agent.plist.j2"
+    dest: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/homebrew.mxcl.buildkite-agent.plist"
+    mode: "0600"
+  notify:
+    - "restart-darwin-buildkite"
+
 - name: Configure Buildkite
   template:
     src: "buildkite-agent.cfg.j2"
     dest: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg"
     mode: "0600"
   notify:
-    - "Restart Buildkite Agent and Register for Login"
+    - "restart-darwin-buildkite"
 
 - name: Set environment hook to load bash profile for test runs
   template:
@@ -28,4 +36,4 @@
     mode: "0600"
   when: buildkite_agent_load_bash_profile == True
   notify:
-    - "Restart Buildkite Agent and Register for Login"
+    - "restart-darwin-buildkite"
