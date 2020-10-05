@@ -8,6 +8,7 @@
   user:
     name: "{{ buildkite_agent_username }}"
     create_home: yes
+    group: "{{ buildkite_agent_username }}"
     home: "/var/lib/{{ buildkite_agent_username }}"  # because the deb creates /var/lib/buildkite-agent by default.
     shell: ""
     system: yes
