@@ -1,0 +1,12 @@
+---
+# Please keep lists alphabetically, case-insensitive, sorted
+
+# These are lists of github usernames.
+# Yes, there's a special hell for us and we don't have a mapping system for GH->improbable and back, yet.
+aliases:
+  team-eng-velocity:
+    - DoomGerbil         # Sean Robertson
+    - filipVisko          # Filip Viskovic
+    - Helcaraxan         # Duco van Amstel
+    - PaulSonOfLars      # PaulSonOfLars
+    - petemounce         # Peter Mounce
