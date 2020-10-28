@@ -13,6 +13,9 @@ yaml-files:
 rules:
   document-start:
     level: error
+  key-ordering: {}
   line-length:
     max: 1200
     level: warning
+  quoted-strings:
+    quote-type: single
