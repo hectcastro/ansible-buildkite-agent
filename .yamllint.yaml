@@ -13,6 +13,9 @@ yaml-files:
 rules:
   document-start:
     level: error
+  indentation:
+    spaces: consistent
+    indent-sequences: true
   key-ordering: {}
   line-length:
     max: 1200
