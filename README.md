@@ -79,4 +79,11 @@ Variable names below map to [the agent configuration documentation](https://buil
 
 See the [examples](./examples/) directory.
 
+## Local workflow
+
+```bash
+pip3 install -r requirements.txt
+pre-commit run --all-files
+```
+
 [NSSM]: https://nssm.cc

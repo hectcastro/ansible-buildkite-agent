@@ -1,0 +1,11 @@
+# make github collapse diffs for generated files within PRs
+# https://github.com/github/linguist#generated-code
+
+# make github know about vendored code
+# https://github.com/github/linguist#vendored-code
+**/vendor/** linguist-vendored
+
+# OWNERS files are YAML
+OWNERS linguist-language=Yaml
+**/OWNERS linguist-language=Yaml
+OWNERS_ALIASES linguist-language=Yaml

@@ -1,0 +1,66 @@
+---
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+# ignore:
+# vendor'd code (that has vendor in its path)
+exclude: vendor
+
+repos:
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.25.0
+    hooks:
+      - id: yamllint
+        args:
+          - --format=parsable
+          - --strict
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+    rev: 0.1.0  # or higher tag
+    hooks:
+      - id: yamlfmt
+        args:
+          - --mapping=2
+          - --sequence=4
+          - --offset=2
+          - --width=1200    # match .yamllint.yaml; we don't care about line-length.
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
+      - id: pretty-format-json
+        args:
+          - --autofix
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+
+  - repo: https://github.com/syntaqx/git-hooks
+    rev: v0.0.16
+    hooks:
+      - id: forbid-binary
+      # See checks in shellcheck wiki: https://github.com/koalaman/shellcheck/wiki/
+      - id: shellcheck
+      - id: shfmt
+        # do not use these args (yet):
+        # -s, simplify code
+        # -mn, minify to reduce its size
+        args:
+          - -w      # autofix in place
+          - -d      # show diff
+          - -i=2    # indent 2 spaces
+
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v4.3.5
+    hooks:
+      - id: ansible-lint
