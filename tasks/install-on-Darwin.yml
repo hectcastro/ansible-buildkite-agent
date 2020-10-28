@@ -2,16 +2,18 @@
 # https://buildkite.com/docs/agent/v3/osx
 # TODO:
 # * Conditionally upgrade when already present - `brew update && brew upgrade buildkite-agent`
-- name: Add buildkite's tap
-  homebrew_tap:
-    name: buildkite/buildkite
-    state: present
+- name: install buildkite binary
+  when: buildkite_agent_should_install_binary
+  block:
+    - name: Add buildkite's tap
+      homebrew_tap:
+        name: buildkite/buildkite
+        state: present
 
-- name: Install buildkite-agent
-  homebrew:
-    name: buildkite-agent
-    state: latest
-    update_homebrew: yes
+    - name: Install buildkite-agent
+      homebrew:
+        name: buildkite-agent
+        state: latest
 
 - name: Configure Buildkite
   template:

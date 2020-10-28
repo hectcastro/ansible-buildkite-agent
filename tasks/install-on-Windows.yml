@@ -45,24 +45,27 @@
     - 'c:/program files/buildkite-agent'
     - '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
 
-- name: fetch buildkite-agent windows release
-  win_get_url:
-    url: https://github.com/buildkite/agent/releases/download/v{{ buildkite_agent_version }}/buildkite-agent-windows-amd64-{{ buildkite_agent_version }}.zip
-    dest: 'c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
-    timeout: 30
-    follow_redirects: all
+- name: install buildkite binary
+  when: buildkite_agent_should_install_binary
+  block:
+    - name: fetch buildkite-agent windows release
+      win_get_url:
+        url: https://github.com/buildkite/agent/releases/download/v{{ buildkite_agent_version }}/buildkite-agent-windows-amd64-{{ buildkite_agent_version }}.zip
+        dest: 'c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip'
+        timeout: 30
+        follow_redirects: all
 
-- name: unzip the release
-  win_unzip:
-    src: "c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip"
-    dest: "c:/program files/buildkite-agent"
-    creates: "c:/program files/buildkite-agent/buildkite-agent.exe"
-    delete_archive: yes
+    - name: unzip the release
+      win_unzip:
+        src: "c:/windows/temp/buildkite-agent-windows-{{ buildkite_agent_platform }}-{{ buildkite_agent_version }}.zip"
+        dest: "c:/program files/buildkite-agent"
+        creates: "c:/program files/buildkite-agent/buildkite-agent.exe"
+        delete_archive: yes
 
-- name: delete the shipped configuration stub to avoid binary picking it up (buildkite/agent#881)
-  win_file:
-    state: absent
-    path: c:/program files/buildkite-agent/buildkite-agent.cfg
+    - name: delete the shipped configuration stub to avoid binary picking it up (buildkite/agent#881)
+      win_file:
+        state: absent
+        path: c:/program files/buildkite-agent/buildkite-agent.cfg
 
 - name: render the configuration template
   win_template:

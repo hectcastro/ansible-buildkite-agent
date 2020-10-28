@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-* ...
+* Fix: don't update homebrew on macOS as part of installing, since this is potentially very slow.
+* Add: make installing the binary be optional (`buildkite_agent_should_install_binary`), in case people (yes, improbable) elect to install it differently.
 
 ## 3.2.1: 2020-10-05
 

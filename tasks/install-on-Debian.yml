@@ -14,28 +14,31 @@
     system: yes
     uid: "{{ buildkite_agent_user_uid | default(omit) }}"
 
-- name: Configure the Buildkite APT key
-  apt_key:
-    keyserver: hkp://keyserver.ubuntu.com:80
-    id: 32A37959C2FA5C3C99EFBC32A79206696452D198
-    state: present
+- name: install buildkite binary
+  when: buildkite_agent_should_install_binary
+  block:
+    - name: Configure the Buildkite APT key
+      apt_key:
+        keyserver: hkp://keyserver.ubuntu.com:80
+        id: 32A37959C2FA5C3C99EFBC32A79206696452D198
+        state: present
 
-- name: Configure the Buildkite APT repository
-  apt_repository:
-    repo: "deb https://apt.buildkite.com/buildkite-agent stable main"
-    state: present
+    - name: Configure the Buildkite APT repository
+      apt_repository:
+        repo: "deb https://apt.buildkite.com/buildkite-agent stable main"
+        state: present
 
-- name: Install Latest Buildkite Agent
-  apt:
-    pkg: "buildkite-agent"
-    state: present
-  when: buildkite_agent_allow_latest == True
+    - name: Install Latest Buildkite Agent
+      apt:
+        pkg: "buildkite-agent"
+        state: present
+      when: buildkite_agent_allow_latest == True
 
-- name: Install Buildkite Agent
-  apt:
-    pkg: "buildkite-agent={{ buildkite_agent_version }}-{{ buildkite_agent_build_number }}"
-    state: present
-  when: buildkite_agent_allow_latest == False
+    - name: Install Buildkite Agent
+      apt:
+        pkg: "buildkite-agent={{ buildkite_agent_version }}-{{ buildkite_agent_build_number }}"
+        state: present
+      when: buildkite_agent_allow_latest == False
 
 - name: Configure Buildkite
   template:
