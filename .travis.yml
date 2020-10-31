@@ -1,11 +1,14 @@
 ---
-sudo: required
-language: python
-services:
-  - docker
 before_install:
-  - sudo apt-get -qq update
-  - pip install -r requirements.txt
+  - 'sudo apt-get -qq update'
+  - 'pip install -r requirements.txt'
+cache:
+  directories:
+    - '$HOME/.cache/pre-commit'
+language: 'python'
 script:
-  - workflow/onboarding.sh
-  - workflow/ci.sh
+  - 'workflow/onboarding.sh'
+  - 'workflow/ci.sh'
+services:
+  - 'docker'
+sudo: 'required'

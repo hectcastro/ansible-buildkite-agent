@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck source=lib/stdlib.bash
 source "$(dirname "${BASH_SOURCE[0]}")/lib/stdlib.bash" || exit 67
 
 log_warn "This script will check whether your computer is set up ok for development. You should read it first. If it detects that you're not, it will fail and try to tell you what to do to proceed."
@@ -11,3 +12,6 @@ pyenv virtualenv --help >"/dev/null" || log_fatal "You need pyenv-virtualenv. Pl
 
 log_action "Installing pip requirements..."
 pip3 install -r requirements.txt
+
+log_action "Warming up pre-commit..."
+pre-commit install-hooks
