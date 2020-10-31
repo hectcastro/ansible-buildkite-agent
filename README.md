@@ -83,8 +83,10 @@ See the [examples](./examples/) directory.
 ## Local workflow
 
 ```bash
-pip3 install -r requirements.txt
-pre-commit run --all-files
+# Get set up - one time. Read it first.
+workflow/onboarding.sh
+# Run what CI would.
+workflow/ci.sh
 ```
 
 [NSSM]: https://nssm.cc

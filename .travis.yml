@@ -1,0 +1,11 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+before_install:
+  - sudo apt-get -qq update
+  - pip install -r requirements.txt
+script:
+  - workflow/onboarding.sh
+  - workflow/ci.sh
