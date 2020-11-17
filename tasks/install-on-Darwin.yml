@@ -5,7 +5,8 @@
   block:
     - name: Add buildkite's tap
       homebrew_tap:
-        name: buildkite/buildkite
+        name: "buildkite/buildkite"
+        url: "{{ buildkite_agent_homebrew_tap_url | default(omit) }}"
         state: present
       become: no
 

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Fix: don't accidentally run homebrew with become, it refuses.
 * Fix: correct permissions and ownership on macOS configuration file and environment hook.
+* Add: `buildkite_agent_homebrew_tap_url` (to allow overriding with an ssh-based tap for reliability).
 
 ## 3.3.0: 2020-10-29
 
