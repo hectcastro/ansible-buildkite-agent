@@ -1,7 +1,5 @@
 ---
 # https://buildkite.com/docs/agent/v3/osx
-# TODO:
-# * Conditionally upgrade when already present - `brew update && brew upgrade buildkite-agent`
 - name: install buildkite binary
   when: buildkite_agent_should_install_binary
   block:
@@ -9,17 +7,21 @@
       homebrew_tap:
         name: buildkite/buildkite
         state: present
+      become: no
 
     - name: Install buildkite-agent
       homebrew:
         name: buildkite-agent
         state: latest  # noqa 403 homebrew doesn't allow version pinning
+      become: no
 
 - name: Configure Buildkite
   template:
     src: "buildkite-agent.cfg.j2"
     dest: "{{ buildkite_agent_conf_dir[ansible_os_family] }}/buildkite-agent.cfg"
-    mode: "0600"
+    mode: "0400"
+    owner: "{{ buildkite_agent_username }}"
+    group: "wheel"
   notify:
     - "restart-darwin-buildkite"
 
@@ -27,7 +29,9 @@
   template:
     src: "buildkite-agent-hook-environment.sh"
     dest: "{{ buildkite_agent_hooks_dir[ansible_os_family] }}/environment"
-    mode: "0600"
+    mode: "0444"
+    owner: "{{ buildkite_agent_username }}"
+    group: "wheel"
   when: buildkite_agent_load_bash_profile
   notify:
     - "restart-darwin-buildkite"

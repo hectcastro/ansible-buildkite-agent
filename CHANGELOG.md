@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+* Fix: don't accidentally run homebrew with become, it refuses.
+* Fix: correct permissions and ownership on macOS configuration file and environment hook.
+
 ## 3.3.0: 2020-10-29
 
 * Fix: don't update homebrew on macOS as part of installing, since this is potentially very slow.
