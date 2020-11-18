@@ -1,6 +1,6 @@
 ---
 - name: generate password if needed
-  when: buildkite_agent_user_password == ''
+  when: buildkite_agent_user_password | length == 0
   set_fact:
     buildkite_agent_user_generated_password: "{{ lookup('password', '/tmp/bk-agent-password length=32 chars=ascii_letters,digits,punctuation') }}"
 
@@ -8,7 +8,7 @@
   win_user:
     description: "{{ buildkite_agent_user_description }}"
     name: "{{ buildkite_agent_username }}"
-    password: "{{ (buildkite_agent_user_password == '') | ternary(buildkite_agent_user_generated_password, buildkite_agent_user_password) }}"
+    password: "{{ (buildkite_agent_user_password | length == 0) | ternary(buildkite_agent_user_generated_password, buildkite_agent_user_password) }}"
     password_never_expires: yes
     user_cannot_change_password: yes
   register: buildkite_agent_user
@@ -111,5 +111,5 @@
   win_service:
     name: buildkite-agent
     username: "{{ buildkite_agent_username }}"
-    password: "{{ (buildkite_agent_user_password == '') | ternary(buildkite_agent_user_generated_password, buildkite_agent_user_password) }}"
+    password: "{{ (buildkite_agent_user_password | length == 0) | ternary(buildkite_agent_user_generated_password, buildkite_agent_user_password) }}"
     state: "{{ buildkite_agent_allow_service_startup[ansible_os_family] | ternary('started', 'stopped') }}"
