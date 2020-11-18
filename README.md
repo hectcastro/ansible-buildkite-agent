@@ -66,6 +66,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 
 - `buildkite_agent_nssm_exe` - the full path to nssm.exe in case it's not on `PATH`.
 - `buildkite_agent_nssm_version` - Which version of [NSSM] to use to manage the buildkite-agent process as a service.
+- `buildkite_agent_user_password` - If supplied, will be used for the Windows user account, otherwise a random password will be generated.
 - `buildkite_agent_windows_grant_admin` - If `True` make the `buildkite_agent_username` user be a member of the local `Administrators` group. You must assess your own security risk tradeoff with the necessity for Windows build tools needing privileges.
 
 #### Darwin
