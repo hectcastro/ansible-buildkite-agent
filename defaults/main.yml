@@ -18,7 +18,10 @@ buildkite_agent_home_dir:
   Darwin: "/usr/local/var/{{ buildkite_agent_username }}"
   Debian: "/var/lib/{{ buildkite_agent_username }}"
   Windows: "c:/users/{{ buildkite_agent_username }}"
-buildkite_agent_should_install_binary: yes
+buildkite_agent_should_install_binary:
+  Darwin: yes
+  Debian: yes
+  Windows: yes
 buildkite_agent_token: ""
 # Allow the handlers to re|start service during this role.
 # If you retrieve the registration token secret via some other means, setting these

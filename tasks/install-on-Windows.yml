@@ -45,7 +45,7 @@
     - '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
 
 - name: install buildkite binary
-  when: buildkite_agent_should_install_binary
+  when: buildkite_agent_should_install_binary[ansible_os_family]
   block:
     - name: fetch buildkite-agent windows release
       win_get_url:

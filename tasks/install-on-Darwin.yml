@@ -1,7 +1,7 @@
 ---
 # https://buildkite.com/docs/agent/v3/osx
 - name: install buildkite binary
-  when: buildkite_agent_should_install_binary
+  when: buildkite_agent_should_install_binary[ansible_os_family]
   block:
     - name: Add buildkite's tap
       homebrew_tap:
