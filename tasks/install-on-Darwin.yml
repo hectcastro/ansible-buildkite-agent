@@ -13,6 +13,7 @@
       - name: Install buildkite-agent
         homebrew:
           name: buildkite-agent
+          path: '{{ buildkite_agent_brew_dir }}/bin'
           state: latest  # noqa 403 homebrew doesn't allow version pinning
         become: false
 
