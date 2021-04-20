@@ -6,7 +6,12 @@
 aliases:
   team-eng-velocity:
     - DoomGerbil         # Sean Robertson
-    - filipVisko          # Filip Viskovic
+    - filipVisko         # Filip Viskovic
     - Helcaraxan         # Duco van Amstel
     - PaulSonOfLars      # PaulSonOfLars
-    - petemounce         # Peter Mounce
+
+  team-reliability-engineering:
+    - Christopher-Steel  # Christopher Steel
+    - filipVisko         # Filip Viskovic
+    - LeadTimeNull       # Andreas Valentin Pederson
+    - PaulSonOfLars      # PaulSonOfLars
