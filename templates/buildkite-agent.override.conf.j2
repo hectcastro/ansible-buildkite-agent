@@ -8,7 +8,8 @@ ExecStart={{ buildkite_agent_executable[ansible_os_family] }} {{ buildkite_agent
 
 User={{ buildkite_agent_username }}
 
-# These options will only work on systemd newer than late 2017 (https://github.com/systemd/systemd/issues/3991)
-# On older systemd, they will generate a warning, but no error.
-StandardOutput=file:{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log
-StandardError=file:{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log
+# Only point the agent logs at files if the log dir var is set. Otherwise they will flow to stdout/stderr/journal.
+{% if buildkite_agent_logs_dir[ansible_os_family] is defined %}
+  StandardOutput=file:{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log
+  StandardError=file:{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log
+{% endif %}
