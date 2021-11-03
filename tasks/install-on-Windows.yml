@@ -98,16 +98,26 @@
     with_items:
       - '{{ buildkite_agent_builds_dir[ansible_os_family] }}'
 
-  - name: configure buildkite-agent as an nssm service
+  # Only one of the below tasks will run, depending on the type of service logging
+  - name: configure buildkite-agent as an nssm service with journal-based logging
     win_nssm:
       name: buildkite-agent
       application: '{{ buildkite_agent_executable[ansible_os_family] }}'
       arguments: '{{ buildkite_agent_start_command[ansible_os_family] }}'
-      {% if buildkite_agent_logs_dir[ansible_os_family] is defined %}
       stdout_file: '{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log'
       stderr_file: '{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log'
-      {% endif %}
       executable: '{{ buildkite_agent_nssm_exe }}'
+    when: buildkite_agent_logs_dir[ansible_os_family] is undefined
+
+  - name: configure buildkite-agent as an nssm service with file-based logging
+    win_nssm:
+      name: buildkite-agent
+      application: '{{ buildkite_agent_executable[ansible_os_family] }}'
+      arguments: '{{ buildkite_agent_start_command[ansible_os_family] }}'
+      stdout_file: '{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log'
+      stderr_file: '{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log'
+      executable: '{{ buildkite_agent_nssm_exe }}'
+    when: buildkite_agent_logs_dir[ansible_os_family] is defined
 
   - name: configure service
     win_service:
