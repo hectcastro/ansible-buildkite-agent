@@ -8,8 +8,8 @@ ExecStart={{ buildkite_agent_executable[ansible_os_family] }} {{ buildkite_agent
 
 User={{ buildkite_agent_username }}
 
-# Only point the agent logs at files if the log dir var is set. Otherwise they will flow to stdout/stderr/journal.
 {% if buildkite_agent_logs_dir[ansible_os_family] is defined %}
+  # Point the agent logs at files if the user chooses a log dir. Otherwise they will flow to stdout/stderr/journal.
   StandardOutput=file:{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log
   StandardError=file:{{ buildkite_agent_logs_dir[ansible_os_family] }}/buildkite-agent.log
 {% endif %}
