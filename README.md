@@ -22,7 +22,7 @@ An Ansible role to install the [Buildkite Agent](https://buildkite.com/docs/agen
   - Note: on Windows, this defaults to `c:/b` because long filenames still cause problems in the 21st Century.
 - `buildkite_agent_hooks_dir` - Path to where agent will look for hooks.
 - `buildkite_agent_plugins_dir` - Path to where agent will look for plugins.
-- `buildkite_agent_logs_dir` - Path to write agent logs.
+- `buildkite_agent_logs_dir` - Path to write agent logs - if unset, logs are printed to stdout/stderr.
   - Note that this option only applies to Windows, and Linux platforms with [systemd versions newer than late 2017](https://github.com/systemd/systemd/issues/3991).
 
 ### Configuration settings
