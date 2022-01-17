@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Fix: Use `brew` executable from `buildkite_agent_brew_dir` when targeting homebrew task.
 
+## 4.2.0
+
+* Add: If `buildkite_agent_logs_dir` is unset for the target platform, log to stdout/stderr instead of an arbitrary default file.
+
 ## 4.1.0
 
 * Add: macOS `buildkite_agent_brew_dir` to set where `brew` is installed.

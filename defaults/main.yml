@@ -45,10 +45,6 @@ buildkite_agent_plugins_dir:
   Darwin: '{{ buildkite_agent_home_dir[ansible_os_family] }}/plugins'
   Debian: '{{ buildkite_agent_home_dir[ansible_os_family] }}/plugins'
   Windows: '{{ buildkite_agent_conf_dir[ansible_os_family] }}/plugins'
-buildkite_agent_logs_dir:
-  Darwin: '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
-  Debian: '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
-  Windows: '{{ buildkite_agent_conf_dir[ansible_os_family] }}'
 
 # configuration values, see https://buildkite.com/docs/agent/v3/configuration
 # note: the booleans are quoted otherwise they are rendered capitalised.
