@@ -15,6 +15,7 @@ An Ansible role to install the [Buildkite Agent](https://buildkite.com/docs/agen
 - `buildkite_agent_start_parameters` - Command line flags to pass to the `buildkite-agent start` command to start the agent.
 - `buildkite_agent_start_command` - Arguments passed verbatim to the `buildkite_agent_executable` at startup.  Wraps `buildkite_agent_start_parameters` by default - if using a shim or script for `buildkite_agent_executable`, override this instead of `buildkite_agent_start_parameters`.
 - `buildkite_agent_token` - Buildkite agent registration token. Available from `https://buildkite.com/organizations/{org-slug}/agents`.
+- `buildkite_agent_name` - Name for the Buildkite agent(s).
 
 ### Paths-related
 

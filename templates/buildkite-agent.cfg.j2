@@ -2,7 +2,7 @@
 token="{{ buildkite_agent_token }}"
 
 # The name of the agent
-name="%hostname-%n"
+name="{{ buildkite_agent_name }}"
 
 # Number of agents to spawn
 spawn="{{ buildkite_agent_count | default('1') }}"
