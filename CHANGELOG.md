@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+* Add: `buildkite_agent_name` option.
 * Fix: Use `brew` executable from `buildkite_agent_brew_dir` when targeting homebrew task.
 
 ## 4.2.0
