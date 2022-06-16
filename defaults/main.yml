@@ -21,7 +21,7 @@ buildkite_agent_should_install_binary:
   Darwin: true
   Debian: true
   Windows: true
-buildkite_agent_name: '%hostname-%n'
+buildkite_agent_name: '%hostname-%spawn'
 buildkite_agent_token: ''
 # Allow the handlers to re|start service during this role.
 # If you retrieve the registration token secret via some other means, setting these
