@@ -33,6 +33,7 @@ Variable names below map to [the agent configuration documentation](https://buil
 - `buildkite_agent_bootstrap_script`
 - `buildkite_agent_git_clean_flags`
 - `buildkite_agent_git_clone_flags`
+- `buildkite_agent_git_fetch_flags`
 - `buildkite_agent_no_color`
 - `buildkite_agent_no_command_eval`
 - `buildkite_agent_no_plugins`

@@ -55,6 +55,7 @@ buildkite_agent_bootstrap_script:
   Windows: buildkite-agent bootstrap
 buildkite_agent_git_clean_flags: -fxdq
 buildkite_agent_git_clone_flags: -v
+buildkite_agent_git_fetch_flags: -v --prune
 buildkite_agent_no_color: 'false'
 buildkite_agent_no_command_eval: 'false'
 buildkite_agent_no_plugins: 'false'

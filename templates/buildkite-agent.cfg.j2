@@ -45,6 +45,9 @@ plugins-path="{{ buildkite_agent_plugins_dir[ansible_os_family] }}"
 # Flags to pass to the `git clone` command
 git-clone-flags={{ buildkite_agent_git_clone_flags }}
 
+# Flags to pass to the `git fetch` command
+git-fetch-flags={{ buildkite_agent_git_fetch_flags }}
+
 # Flags to pass to the `git clean` command
 git-clean-flags={{ buildkite_agent_git_clean_flags }}
 
