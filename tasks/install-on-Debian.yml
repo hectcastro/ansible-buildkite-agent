@@ -72,5 +72,5 @@
     systemd:
       name: buildkite-agent
       state: '{{ buildkite_agent_allow_service_startup[ansible_os_family] | ternary(''started'', ''stopped'') }}'
-      enabled: true
+      enabled: '{{ buildkite_agent_allow_service_startup[ansible_os_family] }}'
       daemon_reload: true
